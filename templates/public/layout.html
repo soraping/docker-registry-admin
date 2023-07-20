@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  {% block title %}
+  <title>版本管理</title>
+  {% endblock %}
+
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="/static/assets/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="/static/assets/style/admin.css" media="all">
+  <link rel="stylesheet" href="/static/assets/style/template.css" media="all">
+  {% block custom_css %}{% endblock %}
+</head>
+<body>
+
+  {% block content %}{% endblock %}
+
+  <script src="/static/assets/layui/layui.js"></script>
+  <script>
+      layui.config({
+            base: '/static/assets/' //静态资源所在路径
+          }).extend({
+            index: 'lib/index' //主入口模块
+          }).use(['index']);
+  </script>
+  {% block custom_js %}{% endblock %}
+</body>
+</html>
