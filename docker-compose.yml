@@ -1,0 +1,19 @@
+version: "3"
+services:
+
+  registry:
+    image: registry
+    restart: always
+    privileged: true
+    container_name: docker-registry
+    ports:
+      - 5000:5000
+    environment:
+      - REGISTRY_AUTH=htpasswd
+      - REGISTRY_AUTH_HTPASSWD_PATH=E:\mydata\registry\auth\htpasswd
+      - REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm
+      - REGISTRY_STORAGE_DELETE_ENABLED=true
+    volumes:
+      - E:\mydata\registry\config.yml:/etc/docker/registry/config.yml
+      - E:\mydata\registry\auth:/auth
+      - E:\mydata\registry\data:/var/lib/registry
