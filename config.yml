@@ -37,6 +37,10 @@ notifications:
       timeout: 10s
       threshold: 10
       backoff: 1s
+      ignoredmediatypes:
+        - application/octet-stream
       ignore:
+        mediatypes:
+           - application/octet-stream
         actions:
            - pull
