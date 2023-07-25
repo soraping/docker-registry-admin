@@ -78,19 +78,20 @@ layui.define(['table', 'form'], function(exports){
 
   // 项目列表
   table.render({
-    elem: '#LAY-app-content-tags'
+    elem: '#LAY-app-content-project'
     ,url: layui.setter.apiHost + '/project/list'
+    ,page: true
     ,cols: [[
         {type: 'numbers', fixed: 'left'}
       ,{field: 'id', width: 100, title: 'ID', sort: true}
-      ,{field: 'name', title: '项目', minWidth: 100}
-      ,{title: '操作', width: 150, align: 'center', fixed: 'right', toolbar: '#layuiadmin-app-cont-tagsbar'}
+      ,{field: 'name', title: '项目名', minWidth: 100}
+      ,{title: '操作', width: 150, align: 'center', fixed: 'right', toolbar: '#layuiadmin-app-cont-projectbar'}
     ]]
-    ,text: '对不起，加载出现异常！'
+    ,text: {none: '暂无数据'}
   });
   
-  //监听工具条
-  table.on('tool(LAY-app-content-tags)', function(obj){
+  // 项目列表监听工具条
+  table.on('tool(LAY-app-content-project)', function(obj){
     var data = obj.data;
     if(obj.event === 'del'){
       layer.confirm('确定删除此分类？', function(index){

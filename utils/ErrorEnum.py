@@ -5,6 +5,8 @@ class ErrorEnum(Enum):
     """
     定义错误 code 和 msg
     """
+    PARAMS_IS_NULL = "000001", "参数不能为空"
+    PARAMS_IS_ERROR = "000002", "参数错误"
     PROJECT_NO_EXIST = "100001", "项目不存在"
 
     def __init__(self, code, msg):

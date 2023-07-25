@@ -8,11 +8,11 @@
   <div class="layui-fluid">
     <div class="layui-card">
       <div class="layui-card-header layuiadmin-card-header-auto">
-        <button class="layui-btn layuiadmin-btn-tags" data-type="add">添加</button>
+        <button class="layui-btn layuiadmin-btn-project" data-type="add">添加</button>
       </div>
       <div class="layui-card-body">    
-        <table id="LAY-app-content-tags" lay-filter="LAY-app-content-tags"></table>  
-        <script type="text/html" id="layuiadmin-app-cont-tagsbar">
+        <table id="LAY-app-content-project" lay-filter="LAY-app-content-project"></table>
+        <script type="text/html" id="layuiadmin-app-cont-projectbar">
           <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
           <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
         </script>
@@ -30,24 +30,45 @@
     var $ = layui.$, active = {
       add: function(){
         layer.open({
-          type: 2
+          type: 1
           ,title: '添加项目'
-          ,content: 'tagsform.html'
-          ,area: ['450px', '200px']
+          ,content: `
+              <div class="layui-form" lay-filter="layuiadmin-form-project" id="layuiadmin-app-form-project" style="padding-top: 30px; text-align: center;">
+                <div class="layui-form-item">
+                  <label class="layui-form-label">项目名</label>
+                  <div class="layui-input-inline">
+                    <input type="text" name="project-name" lay-verify="required" placeholder="请输入..." autocomplete="off" class="layui-input">
+                  </div>
+                </div>
+                <div class="layui-form-item">
+                  <label class="layui-form-label">项目描述</label>
+                  <div class="layui-input-inline">
+                    <textarea name="project-desc" cols="30" rows="6" placeholder="请输入..." />
+                  </div>
+                </div>
+              </div>
+          `
+          ,area: ['450px', '300px']
           ,btn: ['确定', '取消']
           ,yes: function(index, layero){
-            var othis = layero.find('iframe').contents().find("#layuiadmin-app-form-tags")
-            ,tags = othis.find('input[name="tags"]').val();
-            
-            if(!tags.replace(/\s/g, '')) return;
-            
-            table.reload('LAY-app-content-tags');
-            layer.close(index);
+            var othis = layero.contents().find("#layuiadmin-app-form-project")
+            ,projectName = othis.find('input[name="project-name"]').val()
+            ,projectDesc = othis.find('textarea[name="project-desc"]').val();
+            if(!projectName.replace(/\s/g, '')) return;
+            $.post('/project/add', {
+                  'name': projectName,
+                  'desc': projectDesc
+              }, function(res){
+                console.log('add res', res)
+                table.reload('LAY-app-content-project');
+                layer.close(index);
+              });
+
           }
         }); 
       }
     }  
-    $('.layui-btn.layuiadmin-btn-tags').on('click', function(){
+    $('.layui-btn.layuiadmin-btn-project').on('click', function(){
       var type = $(this).data('type');
       active[type] ? active[type].call(this) : '';
     });

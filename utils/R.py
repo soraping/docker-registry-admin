@@ -3,8 +3,9 @@ from utils.ErrorEnum import ErrorEnum
 from constant import constants
 
 
-def success(data):
+def success(data=None):
     result = {
+        'code': 0,
         'msg': constants.MESSAGE_SUCCESS,
         'data': data
     }
@@ -13,10 +14,11 @@ def success(data):
 
 def page(data, page_no, page_size, page_total):
     result = {
-        'dataList': data,
+        'code': 0,
+        'data': data,
         'pageNo': page_no,
         'pageSize': page_size,
-        'total': page_total
+        'count': page_total
     }
     return JsonResponse(result, safe=False, json_dumps_params={"ensure_ascii": False})
 

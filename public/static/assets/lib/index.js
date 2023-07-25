@@ -82,6 +82,7 @@ layui.extend({
   if(admin.screen() < 2) admin.sideFlexible();
   
   //将模块根路径设置为 controller 目录
+  console.log('setter.base', setter.base)
   layui.config({
     base: setter.base + 'modules/'
   });

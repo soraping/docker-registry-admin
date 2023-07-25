@@ -11,6 +11,8 @@ class ProjectModel(BaseModel):
     )
 
     desc = models.TextField(
+        null=True,
+        max_length=150,
         verbose_name="项目使用描述"
     )
 

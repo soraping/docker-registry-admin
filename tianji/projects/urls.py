@@ -3,5 +3,6 @@ from tianji.projects import views
 
 urlpatterns = [
     path('', views.ProjectView.as_view(), name='project_list'),
-    path('list', views.ProjectListView.as_view())
+    path('list', views.ProjectListView.as_view()),
+    path('add', views.ProjectAddView.as_view()),
 ]
