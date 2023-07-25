@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'tianji.index',
-    'tianji.docker_registry'
+    'tianji.docker_registry',
+    'tianji.projects'
 ]
 
 MIDDLEWARE = [

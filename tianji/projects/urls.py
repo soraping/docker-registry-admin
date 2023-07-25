@@ -1,0 +1,7 @@
+from django.urls import path
+from tianji.projects import views
+
+urlpatterns = [
+    path('', views.ProjectView.as_view(), name='project_list'),
+    path('list', views.ProjectListView.as_view())
+]

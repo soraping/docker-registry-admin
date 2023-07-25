@@ -1,0 +1,5 @@
+PAGE_NO = 1
+PAGE_SIZE = 10
+
+MESSAGE_SUCCESS = "操作成功"
+MESSAGE_FAIL = "操作失败"

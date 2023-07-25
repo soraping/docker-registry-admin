@@ -36,6 +36,7 @@ class DockerImageTagsModel(BaseModel):
 
     repository = models.ForeignKey(
         "DockerImageRepositoryModel",
+        null=True,
         on_delete=models.SET_NULL,
         related_name='tag对应的镜像仓库名'
     )

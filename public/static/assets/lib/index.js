@@ -1,2 +1,105 @@
-/** layuiAdmin.std-v1.4.0 LPPL License By https://www.layui.com/admin/ */
- ;layui.extend({setter:"config",admin:"lib/admin",view:"lib/view"}).define(["setter","admin"],function(a){var e=layui.setter,i=layui.element,n=layui.admin,t=n.tabsPage,d=layui.view,l=function(a,d){var l,u=r("#LAY_app_tabsheader>li"),b=a.replace(/(^http(s*):)|(\?[\s\S]*$)/g,"");u.each(function(e){var i=r(this),n=i.attr("lay-id");n===a&&(l=!0,t.index=e)}),d=d||"新标签页";var y=function(){i.tabChange(o,a),n.tabsBodyChange(t.index,{url:a,text:d})};if(e.pageTabs)l||(setTimeout(function(){r(s).append(['<div class="layadmin-tabsbody-item layui-show">','<iframe src="'+a+'" frameborder="0" class="layadmin-iframe"></iframe>',"</div>"].join("")),y()},10),t.index=u.length,i.tabAdd(o,{title:"<span>"+d+"</span>",id:a,attr:b}));else{var m=n.tabsBody(n.tabsPage.index).find(".layadmin-iframe");m[0].contentWindow.location.href=a}y()},s="#LAY_app_body",o="layadmin-layout-tabs",r=layui.$;r(window);n.screen()<2&&n.sideFlexible(),layui.config({base:e.base+"modules/"}),layui.each(e.extend,function(a,i){var n={};n[i]="{/}"+e.base+"lib/extend/"+i,layui.extend(n)}),d().autoRender(),layui.use("common"),a("index",{openTabsPage:l})});
+/**
+
+ @Name：layuiAdmin iframe版主入口
+ @Author：贤心
+ @Site：http://www.layui.com/admin/
+ @License：LPPL
+    
+ */
+ 
+layui.extend({
+  setter: 'config' //配置模块
+  ,admin: 'lib/admin' //核心模块
+  ,view: 'lib/view' //视图渲染模块
+}).define(['setter', 'admin'], function(exports){
+  var setter = layui.setter
+  ,element = layui.element
+  ,admin = layui.admin
+  ,tabsPage = admin.tabsPage
+  ,view = layui.view
+  
+  //打开标签页
+  ,openTabsPage = function(url, text){
+    //遍历页签选项卡
+    var matchTo
+    ,tabs = $('#LAY_app_tabsheader>li')
+    ,path = url.replace(/(^http(s*):)|(\?[\s\S]*$)/g, '');
+    
+    tabs.each(function(index){
+      var li = $(this)
+      ,layid = li.attr('lay-id');
+      
+      if(layid === url){
+        matchTo = true;
+        tabsPage.index = index;
+      }
+    });
+    
+    text = text || '新标签页';
+    
+    //定位当前tabs
+    var setThisTab = function(){
+      element.tabChange(FILTER_TAB_TBAS, url);
+      admin.tabsBodyChange(tabsPage.index, {
+        url: url
+        ,text: text
+      });
+    };
+    
+    if(setter.pageTabs){
+      //如果未在选项卡中匹配到，则追加选项卡
+      if(!matchTo){
+        //延迟修复 Firefox 空白问题
+        setTimeout(function(){
+          $(APP_BODY).append([
+            '<div class="layadmin-tabsbody-item layui-show">'
+              ,'<iframe src="'+ url +'" frameborder="0" class="layadmin-iframe"></iframe>'
+            ,'</div>'
+          ].join(''));
+          setThisTab();
+        }, 10);
+        
+        tabsPage.index = tabs.length;
+        element.tabAdd(FILTER_TAB_TBAS, {
+          title: '<span>'+ text +'</span>'
+          ,id: url
+          ,attr: path
+        });
+        
+      }
+    } else {
+      var iframe = admin.tabsBody(admin.tabsPage.index).find('.layadmin-iframe');
+      iframe[0].contentWindow.location.href = url;
+    }
+    
+    setThisTab();
+  }
+  
+  ,APP_BODY = '#LAY_app_body', FILTER_TAB_TBAS = 'layadmin-layout-tabs'
+  ,$ = layui.$, $win = $(window);
+  
+  //初始
+  if(admin.screen() < 2) admin.sideFlexible();
+  
+  //将模块根路径设置为 controller 目录
+  layui.config({
+    base: setter.base + 'modules/'
+  });
+  
+  //扩展 lib 目录下的其它模块
+  layui.each(setter.extend, function(index, item){
+    var mods = {};
+    mods[item] = '{/}' + setter.base + 'lib/extend/' + item;
+    layui.extend(mods);
+  });
+  
+  view().autoRender();
+  
+  //加载公共模块
+  layui.use('common');
+
+  //对外输出
+  exports('index', {
+    openTabsPage: openTabsPage
+  });
+});
