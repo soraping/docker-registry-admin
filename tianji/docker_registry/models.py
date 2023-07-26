@@ -34,12 +34,12 @@ class DockerImageTagsModel(BaseModel):
         verbose_name="镜像摘要"
     )
 
-    repository = models.ForeignKey(
-        "DockerImageRepositoryModel",
-        null=True,
-        on_delete=models.SET_NULL,
-        related_name='tag对应的镜像仓库名'
-    )
+    # repository = models.ForeignKey(
+    #     "DockerImageRepositoryModel",
+    #     null=True,
+    #     on_delete=models.SET_NULL,
+    #     related_name='tag对应的镜像仓库名'
+    # )
 
     class Meta:
         db_table = env.TABLE_PREFIX + "registry_images"

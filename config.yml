@@ -1,8 +1,15 @@
 version: 0.1
 
 log:
+  # 级别选择debug,info,warn,error
+  level: debug
+  # 日志输出格式，可选text,json,logstash
+  formatter: text
+  # 增加到日志中的键值对，用于过滤日志
   fields:
     service: registry
+    enviroment: staging
+
 storage:
   cache:
     blobdescriptor: inmemory
@@ -10,7 +17,7 @@ storage:
       enable: true
   filesystem:
     rootdirectory: /var/lib/registry
-  
+
 http:
   addr: :5000
   headers:
@@ -21,10 +28,10 @@ health:
     interval: 10s
     threshold: 3
 
-# auth:
-#   htpasswd:
-#     realm: basic-realm
-#     path: /auth/htpasswd
+auth:
+  htpasswd:
+    realm: basic-realm
+    path: /auth/htpasswd
 
 
 notifications:
@@ -41,6 +48,6 @@ notifications:
         - application/octet-stream
       ignore:
         mediatypes:
-           - application/octet-stream
+          - application/octet-stream
         actions:
-           - pull
+          - pull
