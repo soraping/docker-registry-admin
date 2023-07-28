@@ -65,12 +65,6 @@
                 <dd data-name="console" class="layui-this">
                   <a lay-href="{% url 'project_list' %}">项目列表</a>
                 </dd>
-                <dd data-name="console">
-                  <a lay-href="home/homepage1.html">主页一</a>
-                </dd>
-                <dd data-name="console">
-                  <a lay-href="home/homepage2.html">主页二</a>
-                </dd>
               </dl>
             </li>
 
@@ -115,7 +109,12 @@
       
       
       <!-- 主体内容 -->
-      <div class="layui-body" id="LAY_app_body"></div>
+      <div class="layui-body" id="LAY_app_body">
+        <div class="layadmin-tabsbody-item layui-show">
+            <!-- 默认项目列表页 -->
+          <iframe src="{% url 'project_list' %}" class="layadmin-iframe"></iframe>
+        </div>
+      </div>
       
       <!-- 辅助元素，一般用于移动设备下遮罩 -->
       <div class="layadmin-body-shade" layadmin-event="shade"></div>

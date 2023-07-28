@@ -13,8 +13,7 @@
       <div class="layui-card-body">    
         <table id="LAY-app-content-project" lay-filter="LAY-app-content-project"></table>
         <script type="text/html" id="layuiadmin-app-cont-projectbar">
-          <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
-          <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
+            <a class="layui-btn layui-btn-normal layui-btn-sm" lay-event="info"><i class="layui-icon layui-icon-about"></i>详情</a>
         </script>
       </div>
     </div>
@@ -24,10 +23,26 @@
 
 {% block custom_js %}
   <script>
-  layui.use(['index', 'contlist', 'table'], function(){
-
+  layui.use(['index', 'contlist', 'table', 'func'], function(){
     var table = layui.table;
-    var $ = layui.$, active = {
+    var func = layui.func;
+    var $ = layui.$;
+
+
+    table.render({
+        elem: '#LAY-app-content-project'
+        ,url: layui.setter.apiHost + '/project/list'
+        ,page: true
+        ,cols: [[
+           {field: 'id', width: 150, title: 'ID'}
+          ,{field: 'name', title: '项目名', width: 300, edit: 'text'}
+          ,{field: 'desc', title: '描述', minWidth: 250, edit: 'text'}
+          ,{title: '操作', width: 250, align: 'center', fixed: 'right', toolbar: '#layuiadmin-app-cont-projectbar'}
+        ]]
+        ,text: {none: '暂无数据'}
+    });
+
+    var active = {
       add: function(){
         layer.open({
           type: 1
@@ -56,24 +71,18 @@
             ,projectDesc = othis.find('textarea[name="project-desc"]').val();
             if(!projectName.replace(/\s/g, '')) return;
 
-            $.ajax({
-                type: "POST",
+            func.ajaxPost({
                 url: "/project/add",
-                headers: {
-                    "Content-Type": "application/json;charset=utf-8"
-                },
-                data: JSON.stringify({
+                data: {
                   'name': projectName,
                   'desc': projectDesc
-                }),
-                success(res){
+                },
+                success: function(res){
                     console.log('add res', res)
                     table.reload('LAY-app-content-project');
                     layer.close(index);
                 }
-
             })
-
 
           }
         }); 
@@ -82,6 +91,23 @@
     $('.layui-btn.layuiadmin-btn-project').on('click', function(){
       var type = $(this).data('type');
       active[type] ? active[type].call(this) : '';
+    });
+
+    table.on('tool(LAY-app-content-project)', function(obj){
+        console.log("table obj", obj)
+        if(obj.event === 'info'){
+          // 跳转至项目详情页
+        }
+    });
+
+    //监听单元格编辑
+    table.on('edit(LAY-app-content-project)', function(obj){
+      var value = obj.value //得到修改后的值
+      ,data = obj.data //得到所在行所有键值
+      ,field = obj.field; //得到字段
+      layer.msg('[ID: '+ data.id +'] ' + field + ' 字段更改为：'+ value, {
+        offset: '15px'
+      });
     });
   });
   </script>

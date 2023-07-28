@@ -76,56 +76,6 @@ layui.define(['table', 'form'], function(exports){
     }
   });
 
-  // 项目列表
-  table.render({
-    elem: '#LAY-app-content-project'
-    ,url: layui.setter.apiHost + '/project/list'
-    ,page: true
-    ,cols: [[
-        {type: 'numbers', fixed: 'left'}
-      ,{field: 'id', width: 100, title: 'ID', sort: true}
-      ,{field: 'name', title: '项目名', minWidth: 100}
-      ,{title: '操作', width: 150, align: 'center', fixed: 'right', toolbar: '#layuiadmin-app-cont-projectbar'}
-    ]]
-    ,text: {none: '暂无数据'}
-  });
-  
-  // 项目列表监听工具条
-  table.on('tool(LAY-app-content-project)', function(obj){
-    var data = obj.data;
-    if(obj.event === 'del'){
-      layer.confirm('确定删除此分类？', function(index){
-        obj.del();
-        layer.close(index);
-      });
-    } else if(obj.event === 'edit'){
-      var tr = $(obj.tr);
-      layer.open({
-        type: 2
-        ,title: '编辑分类'
-        ,content: '../../../views/app/content/tagsform.html?id='+ data.id
-        ,area: ['450px', '200px']
-        ,btn: ['确定', '取消']
-        ,yes: function(index, layero){
-          //获取iframe元素的值
-          var othis = layero.find('iframe').contents().find("#layuiadmin-app-form-tags")
-          ,tags = othis.find('input[name="tags"]').val();
-          
-          if(!tags.replace(/\s/g, '')) return;
-          
-          obj.update({
-            tags: tags
-          });
-          layer.close(index);
-        }
-        ,success: function(layero, index){
-          //给iframe元素赋值
-          var othis = layero.find('iframe').contents().find("#layuiadmin-app-form-tags").click();
-          othis.find('input[name="tags"]').val(data.tags);
-        }
-      });
-    }
-  });
 
   //评论管理
   table.render({

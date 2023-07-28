@@ -51,3 +51,19 @@ def project_add(request):
         project_form.save()
         return R.success()
     return R.failed(ErrorEnum.PARAMS_IS_ERROR)
+
+
+def project_upd(request):
+    try:
+        json_data = request.body.decode()
+        dict_data = ujson.loads(json_data)
+        if not dict_data.get('id'):
+            return R.failed(ErrorEnum.PARAMS_IS_NULL)
+    except Exception as e:
+        logger.error("更新失败：{}".format(e))
+        return R.failed(ErrorEnum.PARAMS_IS_ERROR)
+
+    models.ProjectModel.objects.filter(id=dict_data.get('id'))\
+        .update(desc=dict_data.get('desc'), name=dict_data.get('desc'))
+
+    return R.success()

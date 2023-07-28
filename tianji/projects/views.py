@@ -25,3 +25,8 @@ class ProjectAddView(View):
     def post(self, request):
         return services.project_add(request)
 
+
+class ProjectUpdateView(View):
+
+    def post(self, request):
+        return services.project_upd(request)
