@@ -12,3 +12,9 @@ class ProjectForm(forms.ModelForm):
                 'invalid': "请输入一个正确的项目名"
             }
         }
+
+    def __init__(self, *args, **kwargs):
+        super(ProjectForm, self).__init__(*args, **kwargs)
+        self.fields['desc'].required = False
+        self.fields['create_user'].required = False
+        self.fields['update_user'].required = False

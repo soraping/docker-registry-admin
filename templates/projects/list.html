@@ -55,14 +55,25 @@
             ,projectName = othis.find('input[name="project-name"]').val()
             ,projectDesc = othis.find('textarea[name="project-desc"]').val();
             if(!projectName.replace(/\s/g, '')) return;
-            $.post('/project/add', {
+
+            $.ajax({
+                type: "POST",
+                url: "/project/add",
+                headers: {
+                    "Content-Type": "application/json;charset=utf-8"
+                },
+                data: JSON.stringify({
                   'name': projectName,
                   'desc': projectDesc
-              }, function(res){
-                console.log('add res', res)
-                table.reload('LAY-app-content-project');
-                layer.close(index);
-              });
+                }),
+                success(res){
+                    console.log('add res', res)
+                    table.reload('LAY-app-content-project');
+                    layer.close(index);
+                }
+
+            })
+
 
           }
         }); 

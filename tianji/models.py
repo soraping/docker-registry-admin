@@ -11,12 +11,14 @@ class BaseModel(models.Model):
     )
     # 创建人
     create_user = models.IntegerField(
+        null=True,
         default=0,
         verbose_name='创建人'
     )
 
     # 更新人
     update_user = models.IntegerField(
+        null=True,
         default=0,
         verbose_name='更新人'
     )
