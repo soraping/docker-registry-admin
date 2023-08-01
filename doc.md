@@ -31,6 +31,11 @@
 [graylog](https://juejin.cn/post/7256625007156658233)
 [logback-spring.xml](https://blog.csdn.net/xu_san_duo/article/details/80364600)
 
+[logback全链路](https://blog.csdn.net/zhibo_lv/article/details/105093808)
+[dubbo Filter](https://blog.51cto.com/Saintmm/5544141)
+
+### nginx
+[nginx request_id 全链路](https://segmentfault.com/a/1190000041451358)
 
 ### python
 [pathlib][https://blog.csdn.net/lly1122334/article/details/106328494]
