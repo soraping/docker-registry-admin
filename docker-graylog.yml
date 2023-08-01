@@ -7,6 +7,8 @@ services:
   mongo:
     image: mongo:4.2
     container_name: mongo
+    volumes:
+      - mongo_data:/data/db
     restart: always
     ports:
       - 27017:27017
@@ -16,6 +18,8 @@ services:
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2
     container_name: es
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
     restart: always
     ports:
       - 9200:9200
@@ -40,11 +44,17 @@ services:
   graylog:
     image: graylog/graylog:4.2
     container_name: graylog
+    volumes:
+      - graylog_journal:/usr/share/graylog/data/journal
     environment:
+      # 时间
       - GRAYLOG_ROOT_TIMEZONE=Asia/Shanghai
-      - GRAYLOG_PASSWORD_SECRET=somepasswordpepper
-      - GRAYLOG_ROOT_PASSWORD_SHA2=8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
-      - GRAYLOG_HTTP_EXTERNAL_URI=http://ip:9009/ # 这里注意要改ip
+      # 16字符
+      - GRAYLOG_PASSWORD_SECRET=tianjigaodaoyuan
+      # echo -n "Enter Password: " && head -1 </dev/stdin | tr -d '\n' | sha256sum | cut -d" " -f1
+      - GRAYLOG_ROOT_PASSWORD_SHA2=157f69a391ae15eac0d462b50ad789fd61064fcd1b15818ee4e3a02b68d92dab
+      # graylog 请求地址
+      - GRAYLOG_HTTP_EXTERNAL_URI=http://192.168.1.13:9009/
     entrypoint: /usr/bin/tini -- wait-for-it elasticsearch:9200 --  /docker-entrypoint.sh
     networks:
       - graylog
@@ -53,10 +63,15 @@ services:
       - mongo
       - elasticsearch
     ports:
+      # Graylog web interface and REST API
       - 9009:9000
+      # Syslog TCP
       - 1514:1514
+      # Syslog UDP
       - 1514:1514/udp
+      # GELF TCP
       - 12201:12201
+      # GELF UDP
       - 12201:12201/udp
 
 
@@ -64,11 +79,10 @@ networks:
   graylog:
     driver: bridge
 
-
-#volumes:
-#  mongo_data:
-#    driver: local
-#  es_data:
-#    driver: local
-#  graylog_journal:
-#    driver: local
+volumes:
+  mongo_data:
+    driver: local
+  es_data:
+    driver: local
+  graylog_journal:
+    driver: local

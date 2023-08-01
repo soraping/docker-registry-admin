@@ -18,6 +18,7 @@
 [docker 网络](https://blog.csdn.net/qq_44749491/article/details/128682105)
 
 [docker 容器内存飙升](https://css.dandelioncloud.cn/article/details/1567522126343401473)
+[docker-compose 顺序启动](https://it.cha138.com/android/show-56038.html)
 
 
 ### springboot
