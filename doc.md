@@ -1,45 +1,74 @@
 ### docker
 
 [docker常用命令](https://blog.csdn.net/IT_Holmes/article/details/126601340)
+
 [dockerfile](https://blog.csdn.net/Trollz/article/details/126072964)
+
 [docker registry](https://blog.csdn.net/u010383467/article/details/116863815)
+
 [docker-registry-ui](https://blog.csdn.net/wqadxmm/article/details/127648237)
+
 [docker-registy](https://blog.csdn.net/qq_41830712/article/details/90694342)
+
 [docker 私服镜像删除](https://zhuanlan.zhihu.com/p/509797691?utm_id=0)
+
 [docker 私服镜像删除](https://www.jianshu.com/p/3a8f49cd8513)
+
 [docker部署nacos](https://blog.csdn.net/qq_37470526/article/details/126183182)
+
 [docker部署nacos](https://zhuanlan.zhihu.com/p/511823126)
+
 [dockerfile docker-compose](https://blog.csdn.net/brytlevson/article/details/124835639)
+
 [docker-compose](https://blog.csdn.net/footless_bird/article/details/123817170)
+
 [docker-compose 配置 networks](https://www.jianshu.com/p/3004fbce4d37)
+
 [docker 搭建 redis 集群](https://blog.csdn.net/ChenBingYang0319/article/details/127778783)
+
 [docker 网络](https://www.cnblogs.com/wdliu/p/10441628.html)
+
 [docker 网络](https://mp.weixin.qq.com/s?__biz=MzU0OTE4MzYzMw==&mid=2247548982&idx=2&sn=5be5068c6e55ab4826c1a757541fcba2&chksm=fbb189c8ccc600dea4b502d9d5bcc0c779b69d93c69d382db26a27768c772736cead35eed3f8&scene=27)
+
 [docker 网络](https://blog.csdn.net/qq_44749491/article/details/128682105)
 
 [docker 容器内存飙升](https://css.dandelioncloud.cn/article/details/1567522126343401473)
+
 [docker-compose 顺序启动](https://it.cha138.com/android/show-56038.html)
 
 
 ### springboot
 
 [springboot 教程](https://blog.csdn.net/weixin_47872288/article/details/119514865)
+
 [springboot 启动后执行指令](https://blog.csdn.net/shaofengzong/article/details/127249926)
+
 [spring 分库分表](https://blog.csdn.net/crazymakercircle/article/details/123420859)
+
 [nacos 启动参数优化](https://refblogs.com/article/342)
+
 [springboot 接入 graylog](https://blog.csdn.net/weduest/article/details/127858768)
+
 [graylog](https://juejin.cn/post/7256625007156658233)
+
 [logback-spring.xml](https://blog.csdn.net/xu_san_duo/article/details/80364600)
 
 [logback全链路](https://blog.csdn.net/zhibo_lv/article/details/105093808)
+
 [dubbo Filter](https://blog.51cto.com/Saintmm/5544141)
+
+[dubbo源码-隐式传参](https://blog.csdn.net/CPLASF_/article/details/123016476)
+
+[shiro](https://blog.csdn.net/qq_40053836/article/details/98970804)
 
 ### nginx
 [nginx request_id 全链路](https://segmentfault.com/a/1190000041451358)
 
 ### python
-[pathlib][https://blog.csdn.net/lly1122334/article/details/106328494]
+[pathlib](https://blog.csdn.net/lly1122334/article/details/106328494)
+
 [ujson](https://devpress.csdn.net/python/62f99c607e6682346618d97d.html)
+
 [python 枚举](https://cloud.tencent.com/developer/article/1657592)
 
 ### dev
@@ -79,6 +108,11 @@ http://lyear.itshubao.com/index.html
 https://blog.csdn.net/JasonXu94/article/details/128890123
 
 [graylog](https://blog.csdn.net/qixiaolinlin/article/details/129966703)
+
+[graylog](https://blog.csdn.net/WEDUEST/article/details/127811578)
+
+[graylog 使用总结](https://blog.csdn.net/liuyij3430448/article/details/127609313)
+
 [graylog](https://zhuanlan.zhihu.com/p/446469553)
 
 [zabbix](https://blog.csdn.net/weixin_42170236/article/details/99942384)
