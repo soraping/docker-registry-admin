@@ -22,10 +22,15 @@ class ProjectModel(BaseModel):
 
 
 class ProjectHostModel(BaseModel):
-    ip = models.CharField(
+
+    real_ip = models.CharField(
         max_length=40,
-        unique=True,
-        verbose_name="主机IP"
+        verbose_name="物理IP"
+    )
+
+    virtual_ip = models.CharField(
+        max_length=40,
+        verbose_name="虚拟IP"
     )
 
     project = models.ForeignKey(
@@ -37,6 +42,18 @@ class ProjectHostModel(BaseModel):
         max_length=20,
         null=True,
         verbose_name="当前负载运行的镜像tag"
+    )
+
+    HOST_STATUS_CHOICES = (
+        (0, "未启用"),
+        (1, "已启用"),
+        (2, "已删除"),
+    )
+    status = models.IntegerField(
+        choices=HOST_STATUS_CHOICES,
+        default=0,
+        verbose_name="负载状态：0-未启用，1-已启用，2-已删除",
+        help_text="负载状态：0-未启用，1-已启用，2-已删除"
     )
 
     class Meta:

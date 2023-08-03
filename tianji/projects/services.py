@@ -80,3 +80,31 @@ def project_detail(request):
         return R.success(project_detail)
     else:
         return R.failed(ErrorEnum.PARAMS_IS_NULL)
+
+
+def project_hosts_list(request):
+    """
+    负载列表
+    """
+    pass
+
+
+def add_host(request):
+    """
+    新增负载
+    """
+    pass
+
+
+def del_host(request):
+    """
+    删除负载
+    """
+    pass
+
+
+def upd_host(request):
+    """
+    修改负载信息
+    """
+    pass
