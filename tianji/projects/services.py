@@ -14,8 +14,8 @@ def project_list(request: HttpRequest):
     page_no = int(request.GET.get('pageNo', constants.PAGE_NO))
     page_size = int(request.GET.get('pageSize', constants.PAGE_SIZE))
 
-    query = models.ProjectModel\
-        .objects.only('name', 'id', 'desc')\
+    query = models.ProjectModel \
+        .objects.only('name', 'id', 'desc') \
         .filter(is_delete=False)
     search_name = request.GET.get('name')
     if search_name:
@@ -63,7 +63,20 @@ def project_upd(request):
         logger.error("更新失败：{}".format(e))
         return R.failed(ErrorEnum.PARAMS_IS_ERROR)
 
-    models.ProjectModel.objects.filter(id=dict_data.get('id'))\
-        .update(desc=dict_data.get('desc'), name=dict_data.get('desc'))
+    models.ProjectModel.objects.filter(id=dict_data.get('id')) \
+        .update(desc=dict_data.get('desc'), name=dict_data.get('name'))
 
     return R.success()
+
+
+def project_detail(request):
+    """
+    查询项目所配置的负载信息
+    """
+    project_name = request.GET.get('name')
+    if project_name:
+        query_set = models.ProjectModel.objects.filter(name=project_name)
+        project_detail = query_set.prefetch_related("projecthostmodel_set").all()
+        return R.success(project_detail)
+    else:
+        return R.failed(ErrorEnum.PARAMS_IS_NULL)

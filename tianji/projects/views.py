@@ -30,3 +30,9 @@ class ProjectUpdateView(View):
 
     def post(self, request):
         return services.project_upd(request)
+
+
+class ProjectDetailView(View):
+
+    def get(self, request):
+        return services.project_detail(request)

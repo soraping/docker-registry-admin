@@ -21,5 +21,5 @@ def registry_tag_list(image_name):
     """
     根据镜像名查询该镜像所有的记录tag
     """
-    image_tag_list = DockerImageTagsModel.objects.filter(name=image_name).order_by('-pk')[:5]
+    image_tag_list = DockerImageTagsModel.objects.filter(name=image_name).order_by('-pk')[:10]
     return R.success(data=list(image_tag_list))

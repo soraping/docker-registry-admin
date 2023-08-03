@@ -12,8 +12,16 @@ layui.define(function(exports){
             type: method,
             url,
             headers,
-            success,
-            error
+            success: function(res){
+                if(res['code'] == 0){
+                    success(res[data])
+                }else{
+                    console.error("请求失败 =>", res)
+                }
+            },
+            error: function(err){
+                console.error("请求失败 =>", err)
+            }
         }
         if(method === 'POST'){
             params['data'] = JSON.stringify(data)

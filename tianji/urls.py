@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from tianji import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,3 +24,9 @@ urlpatterns = [
     path('project/', include('tianji.projects.urls')),
     path('docker/registry/', include('tianji.docker_registry.urls')),
 ]
+
+if "debug_toolbar" in settings.INSTALLED_APPS:
+    import debug_toolbar
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns
