@@ -80,9 +80,22 @@ networks:
     driver: bridge
 
 volumes:
+
   mongo_data:
     driver: local
+    driver_opts:
+      type: 'none'
+      device: '/home/mydata/mongo/data'
+      o: 'bind'
   es_data:
     driver: local
+    driver_opts:
+      type: 'none'
+      device: '/home/mydata/es/data'
+      o: 'bind'
   graylog_journal:
     driver: local
+    driver_opts:
+      type: 'none'
+      device: '/home/mydata/graylog/data'
+      o: 'bind'

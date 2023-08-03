@@ -2,6 +2,8 @@
 
 [docker常用命令](https://blog.csdn.net/IT_Holmes/article/details/126601340)
 
+[docker 命令查询](https://www.cjavapy.com/category/93/)
+
 [dockerfile](https://blog.csdn.net/Trollz/article/details/126072964)
 
 [docker registry](https://blog.csdn.net/u010383467/article/details/116863815)
@@ -35,6 +37,10 @@
 [docker 容器内存飙升](https://css.dandelioncloud.cn/article/details/1567522126343401473)
 
 [docker-compose 顺序启动](https://it.cha138.com/android/show-56038.html)
+
+[centos7 docker 修改镜像地址](https://blog.csdn.net/weixin_38235865/article/details/125101833)
+
+[docker 修改镜像位置](https://blog.csdn.net/weixin_37707670/article/details/126193638)
 
 
 ### springboot
