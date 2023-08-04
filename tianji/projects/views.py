@@ -36,3 +36,27 @@ class ProjectDetailView(View):
 
     def get(self, request):
         return services.project_detail(request)
+
+
+class ProjectHostView(View):
+    def get(self, request):
+        # 获取页面传递参数
+        project_name = request.GET.get('project_name')
+        project_id = request.GET.get('project_id')
+        return render(request, 'projects/host.html', {"project_name": project_name, 'project_id': project_id})
+
+
+class ProjectHostListView(View):
+
+    def get(self, request):
+        return services.project_host_list(request)
+
+
+class ProjectHostAddView(View):
+    def post(self, request):
+        return services.add_host(request)
+
+
+class ProjectHostUpdView(View):
+    def post(self, request):
+        return services.upd_host(request)

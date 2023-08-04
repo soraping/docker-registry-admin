@@ -1,0 +1,116 @@
+{% extends 'public/layout.html' %}
+{% block title %}
+<title>负载列表</title>
+{% endblock %}
+
+{% block content %}
+
+      <div class="layui-fluid">
+          <div class="layui-card">
+              <div class="layui-card-header">{{ project_name }}</div>
+              <div class="layui-card-header layuiadmin-card-header-auto">
+                <button class="layui-btn layui-btn-normal layuiadmin-btn-project-hosts" data-type="back">返回上一页</button>
+                <button class="layui-btn layuiadmin-btn-project-hosts" data-type="add">添加</button>
+              </div>
+              <div class="layui-card-body">
+                <table id="LAY-app-content-hosts" lay-filter="LAY-app-content-hosts"></table>
+              </div>
+          </div>
+          <div>
+              <input id="select-project-name" type="hidden" value="{{ project_name }}" />
+              <input id="select-project-id" type="hidden" value="{{ project_id }}" />
+          </div>
+      </div>
+{% endblock %}
+
+{% block custom_js %}
+    <script>
+        layui.use(['index', 'table', 'func'], function(){
+            var $ = layui.$
+            var func = layui.func
+            var table = layui.table
+
+            // 当前项目
+            var project_name = $('#select-project-name').val()
+
+            table.render({
+                elem: '#LAY-app-content-hosts'
+                ,url: layui.setter.apiHost + '/project/host-list?project_name=' + project_name
+                ,page: false
+                ,cols: [[
+                     {field: 'id', width: 150, title: 'ID'}
+                    ,{field: 'real_ip', title: '物理IP', width: 300}
+                    ,{field: 'virtual_ip', title: '虚拟IP', minWidth: 250}
+                    ,{field: 'tag', title: '镜像版本', minWidth: 250}
+                ]]
+                ,text: {none: '暂无数据'}
+            });
+
+            var active = {
+                add: function(){
+                    layer.open({
+                          type: 1
+                          ,title: '添加负载'
+                          ,content: `
+                              <div class="layui-form" lay-filter="layuiadmin-form-project" id="layuiadmin-app-form-host-add" style="padding-top: 30px; text-align: center;">
+                                <div class="layui-form-item">
+                                  <label class="layui-form-label">项目名</label>
+                                  <div class="layui-input-inline">
+                                    <input type="text" readonly name="project-name" class="layui-input" value="{{ project_name }}">
+                                    <input type="hidden" readonly name="project-id" value="{{ project_id }}">
+                                  </div>
+                                </div>
+                                <div class="layui-form-item">
+                                  <label class="layui-form-label">物理IP</label>
+                                  <div class="layui-input-inline">
+                                    <input type="text" name="real_ip" class="layui-input">
+                                  </div>
+                                </div>
+                                <div class="layui-form-item">
+                                  <label class="layui-form-label">虚拟IP</label>
+                                  <div class="layui-input-inline">
+                                    <input type="text" name="virtual_ip" class="layui-input">
+                                  </div>
+                                </div>
+                              </div>
+                          `
+                          ,area: ['450px', '300px']
+                          ,btn: ['确定', '取消']
+                          ,yes: function(index, layero){
+                                var addHostForm = layero.contents().find("#layuiadmin-app-form-host-add")
+                                var project_id = addHostForm.find('input[name="project-id"]').val()
+                                var real_ip = addHostForm.find('input[name="real_ip"]').val()
+                                var virtual_ip = addHostForm.find('input[name="virtual_ip"]').val()
+
+                                if(!project_name.replace(/\s/g, '')) return;
+                                func.ajaxPost({
+                                    url: "/project/host-add",
+                                    data: {
+                                        project_id,
+                                        real_ip,
+                                        virtual_ip
+                                    },
+                                    success: function(data){
+                                        table.reload('LAY-app-content-hosts');
+                                        layer.close(index);
+                                    }
+                                })
+
+                          }
+                        });
+                },
+                back: function(){
+                    location.href = "/project"
+                }
+            }
+            // 头部按钮操作
+            $('.layui-btn.layuiadmin-btn-project-hosts').on('click', function(){
+                var type = $(this).data('type');
+                active[type] ? active[type].call(this) : '';
+            });
+        })
+
+
+
+    </script>
+{% endblock %}

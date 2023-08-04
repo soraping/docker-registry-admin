@@ -18,3 +18,16 @@ class ProjectForm(forms.ModelForm):
         self.fields['desc'].required = False
         self.fields['create_user'].required = False
         self.fields['update_user'].required = False
+
+
+class ProjectHostForm(forms.Form):
+    real_ip = forms.CharField()
+    virtual_ip = forms.CharField()
+    project_id = forms.IntegerField(
+        required=True,
+        error_messages={
+            "required": "项目编号不能为空"
+        }
+    )
+
+

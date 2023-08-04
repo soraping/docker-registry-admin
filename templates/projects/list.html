@@ -23,7 +23,7 @@
 
 {% block custom_js %}
   <script>
-  layui.use(['index', 'contlist', 'table', 'func'], function(){
+  layui.use(['index', 'table', 'func'], function(){
     var table = layui.table;
     var func = layui.func;
     var $ = layui.$;
@@ -78,7 +78,6 @@
                   'desc': projectDesc
                 },
                 success: function(res){
-                    console.log('add res', res)
                     table.reload('LAY-app-content-project');
                     layer.close(index);
                 }
@@ -94,9 +93,9 @@
     });
 
     table.on('tool(LAY-app-content-project)', function(obj){
-        console.log("table obj", obj)
         if(obj.event === 'info'){
           // 跳转至项目详情页
+            location.href = "/project/host?project_name=" + obj.data['name'] + "&project_id=" + obj.data['id']
         }
     });
 

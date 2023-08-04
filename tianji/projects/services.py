@@ -82,25 +82,35 @@ def project_detail(request):
         return R.failed(ErrorEnum.PARAMS_IS_NULL)
 
 
-def project_hosts_list(request):
+def project_host_list(request):
     """
     负载列表
     """
-    pass
+    project_name = request.GET.get('project_name')
+    hosts = models.ProjectHostModel.objects.all()
+    return R.success()
 
 
 def add_host(request):
     """
     新增负载
     """
-    pass
+    try:
+        # 接收请求参数
+        json_data = request.body.decode()
+        # 数据类型转换
+        dict_data = ujson.loads(json_data)
+        # 参数为空判断
+        if not dict_data.get('project_id'):
+            return R.failed(ErrorEnum.PARAMS_IS_NULL)
+    except Exception as e:
+        logger.error("添加负载失败：{}".format(e))
+        return R.failed(ErrorEnum.PARAMS_IS_ERROR)
 
-
-def del_host(request):
-    """
-    删除负载
-    """
-    pass
+    hosts_form = forms.ProjectHostForm(dict_data)
+    if hosts_form.is_valid():
+        models.ProjectHostModel.save(dict_data)
+    return R.failed(ErrorEnum.PARAMS_IS_ERROR)
 
 
 def upd_host(request):
