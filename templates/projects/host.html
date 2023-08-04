@@ -10,10 +10,23 @@
               <div class="layui-card-header">{{ project_name }}</div>
               <div class="layui-card-header layuiadmin-card-header-auto">
                 <button class="layui-btn layui-btn-normal layuiadmin-btn-project-hosts" data-type="back">返回上一页</button>
-                <button class="layui-btn layuiadmin-btn-project-hosts" data-type="add">添加</button>
               </div>
               <div class="layui-card-body">
-                <table id="LAY-app-content-hosts" lay-filter="LAY-app-content-hosts"></table>
+                  <div class="layui-tab">
+                      <ul class="layui-tab-title">
+                          <li class="layui-this">负载详情</li>
+                          <li>启动脚本</li>
+                      </ul>
+                      <div class="layui-tab-content">
+                          <div class="layui-tab-item layui-show">
+                              <div style="margin: 10px 0">
+                                  <button class="layui-btn layuiadmin-btn-project-hosts" data-type="add">添加负载</button>
+                              </div>
+                              <table id="LAY-app-content-hosts" lay-filter="LAY-app-content-hosts"></table>
+                          </div>
+                          <div class="layui-tab-item">启动脚本文件</div>
+                      </div>
+                  <div>
               </div>
           </div>
           <div>
@@ -25,25 +38,61 @@
 
 {% block custom_js %}
     <script>
-        layui.use(['index', 'table', 'func'], function(){
+        layui.use(['index', 'element', 'table', 'func'], function(){
             var $ = layui.$
             var func = layui.func
             var table = layui.table
+            var element = layui.element
 
             // 当前项目
             var project_name = $('#select-project-name').val()
+            var project_id = $('#select-project-id').val()
 
             table.render({
                 elem: '#LAY-app-content-hosts'
-                ,url: layui.setter.apiHost + '/project/host-list?project_name=' + project_name
+                ,url: layui.setter.apiHost + '/project/host-list?project_id=' + project_id
                 ,page: false
+                ,height: "600px"
                 ,cols: [[
-                     {field: 'id', width: 150, title: 'ID'}
-                    ,{field: 'real_ip', title: '物理IP', width: 300}
-                    ,{field: 'virtual_ip', title: '虚拟IP', minWidth: 250}
-                    ,{field: 'tag', title: '镜像版本', minWidth: 250}
+                     {field: 'id', width: 100, title: 'ID'}
+                    ,{field: 'real_ip', title: '物理IP', width: 150}
+                    ,{field: 'virtual_ip', title: '虚拟IP', width: 150}
+                    ,{field: 'status', width: 100, title: '状态', templet: function(d){
+                            // 前端新增一个启动中(3)的状态
+                            let status_val = ["暂停中", "运行中", "已删除", "启动中"]
+                            let status_val_class = [
+                                "layui-btn-warm",
+                                "",
+                                "layui-btn-danger",
+                                "layui-btn-normal"
+                            ]
+                            return '<button class= "layui-btn layui-btn-xs ' + status_val_class[d.status] + '">' + status_val[d.status] + '</button>'
+                        }}
+                    ,{title: '进度', templet: function(d){
+                        var filter_name = project_name + "_" + d.id
+                        return '<div class="layui-progress layui-progress-big" lay-filter="' + filter_name + '">'+
+                                    '<div class="layui-progress-bar" lay-percent="0"></div>'+
+                                '</div>'
+
+                        }, style: 'padding-top: 15px'}
+                    ,{field: 'tag', title: '镜像版本', width: 250, templet: function(d){
+                        var selectTags = d.select_tags
+                            return `
+                            <div>
+                                <select name="city" lay-verify="">
+                                    <option value="010">北京</option>
+                                    <option value="021" disabled>上海（禁用效果）</option>
+                                    <option value="0571" selected>杭州</option>
+                                  </select>
+                            </div>
+
+                            `
+                        }}
                 ]]
                 ,text: {none: '暂无数据'}
+                ,done(){
+                    {#element.progress('mall-product_1', '70%');#}
+                }
             });
 
             var active = {

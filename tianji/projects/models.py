@@ -36,7 +36,8 @@ class ProjectHostModel(BaseModel):
 
     project = models.ForeignKey(
         "ProjectModel",
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name="hosts"
     )
 
     tag = models.CharField(
@@ -46,15 +47,15 @@ class ProjectHostModel(BaseModel):
     )
 
     HOST_STATUS_CHOICES = (
-        (0, "未启用"),
-        (1, "已启用"),
-        (2, "已删除"),
+        (0, "暂停中"),
+        (1, "运行中"),
+        (2, "已删除")
     )
     status = models.IntegerField(
         choices=HOST_STATUS_CHOICES,
         default=0,
-        verbose_name="负载状态：0-未启用，1-已启用，2-已删除",
-        help_text="负载状态：0-未启用，1-已启用，2-已删除"
+        verbose_name="负载状态：0-暂停中，1-运行中，2-已删除",
+        help_text="负载状态：0-暂停中，1-运行中，2-已删除"
     )
 
     class Meta:

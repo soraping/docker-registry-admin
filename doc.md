@@ -77,6 +77,8 @@
 
 [python 枚举](https://cloud.tencent.com/developer/article/1657592)
 
+[关于Django ForeignKey 反向查询中filter和_set的效率对比详解](https://pythonjishu.com/rmsdbokcdvhwkya/)
+
 ### dev
 
 

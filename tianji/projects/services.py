@@ -5,6 +5,7 @@ from utils import ErrorEnum, R
 from constant import constants
 import ujson
 from django.forms.models import model_to_dict
+from django.db.models import  Q
 import logging
 
 logger = logging.getLogger(__name__)
@@ -86,9 +87,26 @@ def project_host_list(request):
     """
     负载列表
     """
-    project_name = request.GET.get('project_name')
-    hosts = models.ProjectHostModel.objects.all()
-    return R.success()
+    project_id = request.GET.get('project_id')
+
+    # hosts_set = models.ProjectHostModel.objects.filter(project__id=project_id).filter(~Q(status=2))
+    # 使用 related_name 反查
+    project = models.ProjectModel.objects.get(id=project_id)
+    hosts_set = project.hosts.filter(~Q(status=2))
+    hosts = [
+        {
+            "id": host.id,
+            "project_id": host.project_id,
+            "real_ip": host.real_ip,
+            'virtual_ip': host.virtual_ip,
+            'tag': host.tag,
+            # 待选择版本
+            'select_tags': ['1.0', '1.1', '1.2'],
+            'status': host.status
+        }
+        for host in list(hosts_set)
+    ]
+    return R.success(data=hosts)
 
 
 def add_host(request):
@@ -109,8 +127,12 @@ def add_host(request):
 
     hosts_form = forms.ProjectHostForm(dict_data)
     if hosts_form.is_valid():
-        models.ProjectHostModel.objects.create(project_id=hosts_form.project_id,
-                                               real_ip=hosts_form.real_ip, virtual_ip=hosts_form.virtual_ip)
+        project_info = models.ProjectModel.objects.get(id=dict_data.get('project_id'))
+        host = models.ProjectHostModel(project_id=project_info.id,
+                                       real_ip=dict_data.get('real_ip'),
+                                       virtual_ip=dict_data.get('virtual_ip'))
+        host.save()
+        return R.success()
     return R.failed(ErrorEnum.PARAMS_IS_ERROR)
 
 
