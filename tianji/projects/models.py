@@ -1,5 +1,6 @@
 from django.db import models
 from tianji.models import BaseModel
+from config import env
 
 
 # Create your models here.
@@ -17,7 +18,7 @@ class ProjectModel(BaseModel):
     )
 
     class Meta:
-        db_table = "projects"
+        db_table = env.TABLE_PREFIX + "projects"
         verbose_name = "项目表"
 
 
@@ -57,5 +58,5 @@ class ProjectHostModel(BaseModel):
     )
 
     class Meta:
-        db_table = "hosts"
+        db_table = env.TABLE_PREFIX + "hosts"
         verbose_name = "项目负载IP"

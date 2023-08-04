@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 from pathlib import Path
+from config import env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -89,8 +90,12 @@ WSGI_APPLICATION = 'tianji.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        "ENGINE": env.DB_ENGINE,
+        "HOST": env.DB_HOST,
+        "PORT": env.DB_PORT,
+        "NAME": env.DB_NAME,
+        "USER": env.DB_USER,
+        "PASSWORD": env.DB_PASSWORD,
     }
 }
 

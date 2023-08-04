@@ -109,7 +109,8 @@ def add_host(request):
 
     hosts_form = forms.ProjectHostForm(dict_data)
     if hosts_form.is_valid():
-        models.ProjectHostModel.save(dict_data)
+        models.ProjectHostModel.objects.create(project_id=hosts_form.project_id,
+                                               real_ip=hosts_form.real_ip, virtual_ip=hosts_form.virtual_ip)
     return R.failed(ErrorEnum.PARAMS_IS_ERROR)
 
 
