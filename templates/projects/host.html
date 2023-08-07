@@ -23,6 +23,11 @@
                                   <button class="layui-btn layuiadmin-btn-project-hosts" data-type="add">添加负载</button>
                               </div>
                               <table id="LAY-app-content-hosts" lay-filter="LAY-app-content-hosts"></table>
+                              <script type="text/html" id="layuiadmin-app-cont-project-image">
+                                  <a class="layui-btn layui-btn-normal layui-btn-sm" lay-event="start_container"><i class="layui-icon layui-icon-play"></i>启动</a>
+                                  <a class="layui-btn layui-bg-orange layui-btn-sm" lay-event="pause_container"><i class="layui-icon layui-icon-pause"></i>暂停</a>
+                                  <a class="layui-btn layui-bg-red layui-btn-sm" lay-event="restart_container"><i class="layui-icon layui-icon-refresh-3"></i>重启</a>
+                              </script>
                           </div>
                           <div class="layui-tab-item">启动脚本文件</div>
                       </div>
@@ -75,19 +80,17 @@
                                 '</div>'
 
                         }, style: 'padding-top: 15px'}
-                    ,{field: 'tag', title: '镜像版本', width: 250, templet: function(d){
-                        var selectTags = d.select_tags
-                            return `
-                            <div>
-                                <select name="city" lay-verify="">
-                                    <option value="010">北京</option>
-                                    <option value="021" disabled>上海（禁用效果）</option>
-                                    <option value="0571" selected>杭州</option>
-                                  </select>
-                            </div>
-
-                            `
+                    ,{field: 'tag', title: '当前镜像版本', width: 250, templet: function(d){
+                            var selectTags = d.select_tags
+                            var options = selectTags.reduce(function(pre, item){
+                                var status = item == d.tag ? 'selected' : ''
+                                return pre + '<option value="'+ item +'" '+ status +'>'+ item +'</option>'
+                            }, "")
+                            return '<select name="project-image-tag-change" lay-filter="project-image-tag-change">' +
+                                    options +
+                                '</select>'
                         }}
+                    ,{title: '操作', width: 350, align: 'center', fixed: 'right', toolbar: '#layuiadmin-app-cont-project-image'}
                 ]]
                 ,text: {none: '暂无数据'}
                 ,done(){
@@ -157,6 +160,20 @@
                 var type = $(this).data('type');
                 active[type] ? active[type].call(this) : '';
             });
+
+            // tag 选择触发器
+            layui.form.on('select(project-image-tag-change)', function(data){
+
+                var value = data.value; // 获得被选中的值
+                var elem = data.elem; // select 原始dom
+                var othis = data.othis; // 获得 select 元素被替换后的 jQuery 对象
+
+              });
+
+            // 操作按钮
+            table.on('tool(LAY-app-content-hosts)', function(obj){
+                console.log('obj', obj)
+            })
         })
 
 

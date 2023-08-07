@@ -23,6 +23,7 @@ urlpatterns = [
     path('', include('tianji.index.urls')),
     path('project/', include('tianji.projects.urls')),
     path('docker/registry/', include('tianji.docker_registry.urls')),
+    path('work-weixin/', include('tianji.work_weixin.urls'))
 ]
 
 # if "debug_toolbar" in settings.INSTALLED_APPS:

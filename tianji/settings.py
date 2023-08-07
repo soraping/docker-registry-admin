@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     # 'debug_toolbar',
     'tianji.index',
     'tianji.docker_registry',
-    'tianji.projects'
+    'tianji.projects',
+    'tianji.work_weixin'
 ]
 
 INTERNAL_IPS = [

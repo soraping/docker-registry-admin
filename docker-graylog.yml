@@ -4,11 +4,33 @@ version: '3'
 
 services:
 
+  nginx:
+    image: nginx
+    restart: always
+    privileged: true
+    container_name: nginx
+    ports:
+      - 8080:80
+      - 8443:443
+
+    volumes:
+
+      - /home/mydata/nginx/html:/usr/share/nginx/html
+      - /home/mydata/nginx/www:/var/www
+      - /home/mydata/nginx/logs:/var/log/nginx
+      - /home/mydata/nginx/nginx.conf/:/etc/nginx/nginx.conf
+      - /home/mydata/nginx/cert:/etc/nginx/cert
+      - /home/mydata/nginx/conf.d:/etc/nginx/conf.d
+
+    environment:
+      - NGINX_PORT=80
+      - TZ=Asia/Shanghai
+
   mongo:
     image: mongo:4.2
     container_name: mongo
     volumes:
-      - mongo_data:/data/db
+      - /home/mydata/mongo/data:/data/db
     restart: always
     ports:
       - 27017:27017
@@ -19,7 +41,7 @@ services:
     image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2
     container_name: es
     volumes:
-      - es_data:/usr/share/elasticsearch/data
+      - /home/mydata/es/data:/usr/share/elasticsearch/data
     restart: always
     ports:
       - 9200:9200
@@ -45,7 +67,7 @@ services:
     image: graylog/graylog:4.2
     container_name: graylog
     volumes:
-      - graylog_journal:/usr/share/graylog/data/journal
+      - /home/mydata/graylog/data:/usr/share/graylog/data/journal
     environment:
       # 时间
       - GRAYLOG_ROOT_TIMEZONE=Asia/Shanghai
@@ -54,7 +76,7 @@ services:
       # echo -n "Enter Password: " && head -1 </dev/stdin | tr -d '\n' | sha256sum | cut -d" " -f1
       - GRAYLOG_ROOT_PASSWORD_SHA2=157f69a391ae15eac0d462b50ad789fd61064fcd1b15818ee4e3a02b68d92dab
       # graylog 请求地址
-      - GRAYLOG_HTTP_EXTERNAL_URI=http://192.168.1.13:9009/
+      - GRAYLOG_HTTP_EXTERNAL_URI=http://114.55.66.105:9000/
     entrypoint: /usr/bin/tini -- wait-for-it elasticsearch:9200 --  /docker-entrypoint.sh
     networks:
       - graylog
@@ -64,7 +86,7 @@ services:
       - elasticsearch
     ports:
       # Graylog web interface and REST API
-      - 9009:9000
+      - 9000:9000
       # Syslog TCP
       - 1514:1514
       # Syslog UDP
@@ -78,24 +100,3 @@ services:
 networks:
   graylog:
     driver: bridge
-
-volumes:
-
-  mongo_data:
-    driver: local
-    driver_opts:
-      type: 'none'
-      device: '/home/mydata/mongo/data'
-      o: 'bind'
-  es_data:
-    driver: local
-    driver_opts:
-      type: 'none'
-      device: '/home/mydata/es/data'
-      o: 'bind'
-  graylog_journal:
-    driver: local
-    driver_opts:
-      type: 'none'
-      device: '/home/mydata/graylog/data'
-      o: 'bind'
