@@ -1,0 +1,58 @@
+{% extends 'public/layout.html' %}
+{% block title %}
+<title>企微消息配置列表</title>
+{% endblock %}
+
+{% block content %}
+      <div class="layui-fluid">
+        <div class="layui-card">
+          <div class="layui-card-header layuiadmin-card-header-auto">
+            <button class="layui-btn layuiadmin-btn-work-weixin" data-type="add">添加配置</button>
+          </div>
+          <div class="layui-card-body">
+            <table id="LAY-app-content-work-weixin" lay-filter="LAY-app-content-work-weixin"></table>
+            <script type="text/html" id="layuiadmin-app-cont-work-weixin-bar">
+                <a class="layui-btn layui-btn-danger layui-btn-sm" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
+            </script>
+          </div>
+        </div>
+      </div>
+{% endblock %}
+
+{% block custom_js %}
+    <script>
+
+    layui.use(['index', 'table', 'func'], function(){
+        var $ = layui.$
+        var table = layui.table
+        var func = layui.func
+
+        table.render({
+        elem: '#LAY-app-content-work-weixin'
+        ,url: layui.setter.apiHost + '/work-weixin/list'
+        ,page: true
+        ,cols: [[
+            {field: 'id', width: 100, title: 'ID'}
+            ,{field: 'app_name', title: '应用名', width: 150, edit: 'text'}
+            ,{field: 'app_key', title: '应用标识', width: 150, edit: 'text'}
+            ,{field: 'app_type', title: '应用类型', width: 100, templet: function(d){
+                        var type_name = d['app_type'] == 1 ? '机器人消息' : "群消息"
+                        return '<button class="layui-btn layui-btn-xs">' + type_name + '</button>'
+                    }}
+            ,{field: 'corpid', title: '企微ID', width: 200, edit: 'text'}
+            ,{field: 'corpsecret', title: '应用密钥', minWidth: 250, edit: 'text'}
+            ,{field: 'webhook_key', title: '机器人key', minWidth: 300, edit: 'text'}
+            ,{field: 'chat_name', title: '群名称', width: 100}
+            ,{field: 'chat_id', title: '群ID', width: 100}
+            ,{field: 'user_ids', title: '推送目标', minWidth: 250, edit: 'text'}
+            ,{title: '操作', width: 100, align: 'center', fixed: 'right', toolbar: '#layuiadmin-app-cont-work-weixin-bar'}
+        ]]
+        ,text: {none: '暂无数据'}
+        })
+
+    })
+
+    </script>
+
+
+{% endblock %}

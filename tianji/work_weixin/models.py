@@ -11,6 +11,11 @@ class WorkWeixin(BaseModel):
         verbose_name="应用名称"
     )
 
+    app_key = models.CharField(
+        max_length=20,
+        verbose_name="应用标识，对应消息推送标识"
+    )
+
     corpid = models.CharField(
         max_length=18,
         verbose_name="企业微信appid"
@@ -53,6 +58,7 @@ class WorkWeixin(BaseModel):
 
     user_ids = models.CharField(
         null=True,
+        default='@all',
         max_length=200,
         verbose_name="群成员/消息推送目标"
     )
