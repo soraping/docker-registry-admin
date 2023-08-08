@@ -8,3 +8,6 @@ DB_PORT = '3306'
 DB_USER = 'root'
 DB_PASSWORD = 'root'
 DB_NAME = 'tianji'
+
+# 日志地址
+GRAY_LOG_DOMAIN = "http://118.192.66.57:5002"
