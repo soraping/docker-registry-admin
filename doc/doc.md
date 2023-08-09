@@ -52,6 +52,10 @@
 
 [使用alpine镜像自定义python3镜像](https://blog.csdn.net/weixin_42715225/article/details/108894446)
 
+[定制自己的python环境基础镜像](https://www.cnblogs.com/tangshow/p/15980168.html)
+
+[如何为Python应用选择最好的Docker镜像](https://zhuanlan.zhihu.com/p/578256741)
+
 [dockerfile 多阶段构建](https://blog.csdn.net/qq_40981137/article/details/130497235)
 
 [Docker 实战笔记：多阶段构建镜像](https://www.codenong.com/s1190000022826606/)
