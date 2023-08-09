@@ -54,6 +54,8 @@
 
 [dockerfile 多阶段构建](https://blog.csdn.net/qq_40981137/article/details/130497235)
 
+[Docker 实战笔记：多阶段构建镜像](https://www.codenong.com/s1190000022826606/)
+
 ### springboot
 
 [springboot 教程](https://blog.csdn.net/weixin_47872288/article/details/119514865)

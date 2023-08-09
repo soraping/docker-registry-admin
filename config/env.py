@@ -3,7 +3,7 @@ TABLE_PREFIX = "tianji_"
 
 # 数据库
 DB_ENGINE = "django.db.backends.mysql"
-DB_HOST = '118.192.66.57'
+DB_HOST = '127.0.0.1'
 DB_PORT = '8306'
 DB_USER = 'gdy_mall'
 DB_PASSWORD = 'tianji_mall'
