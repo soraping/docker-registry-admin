@@ -6,6 +6,14 @@
 
 [dockerfile](https://blog.csdn.net/Trollz/article/details/126072964)
 
+[dockerfile 指定详解](https://blog.csdn.net/AtlanSI/article/details/87892016)
+
+[dockerfile 详解](https://www.cnblogs.com/Lqdream/p/16918047.html)
+
+[docker-compose 详解](https://blog.csdn.net/huangjinjin520/article/details/124054043)
+
+[dockerfile 优化技巧](https://developer.aliyun.com/article/861395?utm_content=g_1000321052)
+
 [docker registry](https://blog.csdn.net/u010383467/article/details/116863815)
 
 [docker-registry-ui](https://blog.csdn.net/wqadxmm/article/details/127648237)
@@ -42,6 +50,9 @@
 
 [docker 修改镜像位置](https://blog.csdn.net/weixin_37707670/article/details/126193638)
 
+[使用alpine镜像自定义python3镜像](https://blog.csdn.net/weixin_42715225/article/details/108894446)
+
+[dockerfile 多阶段构建](https://blog.csdn.net/qq_40981137/article/details/130497235)
 
 ### springboot
 
@@ -78,6 +89,26 @@
 [python 枚举](https://cloud.tencent.com/developer/article/1657592)
 
 [关于Django ForeignKey 反向查询中filter和_set的效率对比详解](https://pythonjishu.com/rmsdbokcdvhwkya/)
+
+[uwsgi 安装](https://blog.csdn.net/JENREY/article/details/86652539)
+
+conda python 高版本安装 uwsgi 肯定报错，所以使用源码编译安装
+
+```bash
+# 退出虚拟环境
+conda deactivate
+
+# 安装必备软件
+yum install gcc python3-devel openssl-devel
+
+# 进入uwsgi源码目录编译安装
+python3 uwsgiconfig.py --build
+python3 setup.py install
+
+# 全局软链
+ln -s /home/uwsgi/uwsgi-2.0.17.1/uwsgi /usr/bin/uwsgi
+uwsgi --version
+```
 
 ### dev
 
