@@ -22,33 +22,191 @@
 {% block custom_js %}
     <script>
 
-    layui.use(['index', 'table', 'func'], function(){
+    layui.use(['index', 'table', 'form', 'layer', 'func'], function(){
         var $ = layui.$
         var table = layui.table
         var func = layui.func
+        var form = layui.form;
+        var layer = layui.layer
 
         table.render({
-        elem: '#LAY-app-content-work-weixin'
-        ,url: layui.setter.apiHost + '/work-weixin/list'
-        ,page: true
-        ,cols: [[
-            {field: 'id', width: 100, title: 'ID'}
-            ,{field: 'app_name', title: '应用名', width: 150, edit: 'text'}
-            ,{field: 'app_key', title: '应用标识', width: 150, edit: 'text'}
-            ,{field: 'app_type', title: '应用类型', width: 100, templet: function(d){
-                        var type_name = d['app_type'] == 1 ? '机器人消息' : "群消息"
-                        return '<button class="layui-btn layui-btn-xs">' + type_name + '</button>'
-                    }}
-            ,{field: 'corpid', title: '企微ID', width: 200, edit: 'text'}
-            ,{field: 'corpsecret', title: '应用密钥', minWidth: 250, edit: 'text'}
-            ,{field: 'webhook_key', title: '机器人key', minWidth: 300, edit: 'text'}
-            ,{field: 'chat_name', title: '群名称', width: 100}
-            ,{field: 'chat_id', title: '群ID', width: 100}
-            ,{field: 'user_ids', title: '推送目标', minWidth: 250, edit: 'text'}
-            ,{title: '操作', width: 100, align: 'center', fixed: 'right', toolbar: '#layuiadmin-app-cont-work-weixin-bar'}
-        ]]
-        ,text: {none: '暂无数据'}
+            elem: '#LAY-app-content-work-weixin'
+            ,url: layui.setter.apiHost + '/work-weixin/list'
+            ,page: true
+            ,cols: [[
+                {field: 'id', width: 100, title: 'ID'}
+                ,{field: 'app_name', title: '应用名', width: 150, edit: 'text'}
+                ,{field: 'app_key', title: '应用标识', width: 150, edit: 'text'}
+                ,{field: 'app_type', title: '应用类型', width: 100, templet: function(d){
+                            var type_name = d['app_type'] == 1 ? '机器人消息' : "群消息"
+                            return '<button class="layui-btn layui-btn-xs">' + type_name + '</button>'
+                        }}
+                ,{field: 'corpid', title: '企微ID', width: 200, edit: 'text'}
+                ,{field: 'corpsecret', title: '应用密钥', minWidth: 250, edit: 'text'}
+                ,{field: 'webhook_key', title: '机器人key', minWidth: 300, edit: 'text'}
+                ,{field: 'chat_name', title: '群名称', width: 100}
+                ,{field: 'chat_id', title: '群ID', width: 100}
+                ,{field: 'user_ids', title: '推送目标', minWidth: 250, edit: 'text'}
+                ,{title: '操作', width: 100, align: 'center', fixed: 'right', toolbar: '#layuiadmin-app-cont-work-weixin-bar'}
+            ]]
+            ,text: {none: '暂无数据'}
         })
+
+        // 操作栏按钮
+        table.on('tool(LAY-app-content-work-weixin)', function(obj){
+            if(obj['event'] == 'del'){
+                let data = obj['data']
+                layer.confirm(`确认要删除 ${data['app_name']} 吗?`,
+                    {icon: 3, title:'提示'},
+                    function ok(index){
+                        func.ajaxPost({
+                            url: "/work-weixin/upd",
+                            data: {
+                                ...data,
+                                'is_delete': 1
+                            },
+                            success(){
+                                layer.close(index);
+                                table.reload('LAY-app-content-work-weixin');
+                                layer.msg('删除成功', {
+                                    offset: '15px'
+                                  });
+                            }
+                        })
+                    },
+                    function cancel(){
+                        layer.close(index);
+                    }
+                )
+            }
+        })
+
+        // 行编辑
+        table.on('edit(LAY-app-content-work-weixin)', function(obj){
+            let editKey = obj['field']
+            let editVal = obj['value']
+            let data = obj['data']
+            data[editKey] = editVal
+            func.ajaxPost({
+                url: "/work-weixin/upd",
+                data: data,
+                success(){
+                    table.reload('LAY-app-content-work-weixin');
+                    layer.msg('修改成功', {
+                        offset: '15px'
+                      });
+                }
+            })
+        })
+
+        var active = {
+            add(){
+                let formInputList = [
+                    {
+                        "key": "app_name",
+                        "name": "应用名",
+                        "value": ""
+                    },
+                    {
+                        "key": "app_key",
+                        "name": "应用标识",
+                        "value": ""
+                    },
+                    {
+                        "key": "corpid",
+                        "name": "企微ID",
+                        "value": ""
+                    },
+                    {
+                        "key": "corpsecret",
+                        "name": "应用密钥",
+                        "value": ""
+                    },
+                    {
+                        "key": "webhook_key",
+                        "name": "机器人key",
+                        "value": ""
+                    },
+                    {
+                        "key": "chat_name",
+                        "name": "群名称",
+                        "value": ""
+                    },
+                    {
+                        "key": "user_ids",
+                        "name": "推送目标",
+                        "value": "@all"
+                    },
+                ]
+
+                let inputFormHtml = formInputList.reduce(function(pre, item){
+                    let itemHtml = '<div class="layui-form-item">' +
+                                 '<label class="layui-form-label">'+ item['name'] +'</label>' +
+                                 '<div class="layui-input-inline" style="width: 420px">' +
+                                   '<input type="text" name="' + item['key'] + '" placeholder="请输入..." autocomplete="off" class="layui-input" value=' + item['value'] + ' >' +
+                                 '</div>' +
+                            '</div>'
+                    return pre + itemHtml
+                }, '')
+
+                layer.open({
+                    type: 1,
+                    title: '新增配置',
+                    content: '<div class="layui-form" lay-filter="layuiadmin-form-work-weixin" id="layuiadmin-app-form-work-weixin" style="padding-top: 30px; text-align: center;">' +
+                            '<div class="layui-form-item">' +
+                                '<label class="layui-form-label">应用类型</label>' +
+                                '<div class="layui-input-block" style="text-align: left">' +
+                                  '<input type="radio" name="app_type" value="1" title="机器人消息" checked="">' +
+                                  '<input type="radio" name="app_type" value="2" title="群消息">' +
+                                '</div>' +
+                            '</div>' +
+                            inputFormHtml +
+                        '</div>',
+                    area: ['600px', 'auto'],
+                    btn: ['确定', '取消'],
+                    success(){
+                        // 弹框打开后渲染form
+                        form.render(null, 'layuiadmin-form-work-weixin')
+                    },
+                    yes(index, layero){
+                        var formDom = layero.contents().find("#layuiadmin-app-form-work-weixin")
+                        var app_name = formDom.find('input[name="app_name"]').val()
+                        var app_key = formDom.find('input[name="app_key"]').val()
+                        var app_type = formDom.find('input[name="app_type"]:checked').val()
+                        if(!app_name || !app_key) return
+                        var corpid = formDom.find('input[name="corpid"]').val()
+                        var corpsecret = formDom.find('input[name="corpsecret"]').val()
+                        var webhook_key = formDom.find('input[name="webhook_key"]').val()
+                        var chat_name = formDom.find('input[name="chat_name"]').val()
+                        var user_ids = formDom.find('input[name="user_ids"]').val()
+
+                        func.ajaxPost({
+                            url: "/work-weixin/add",
+                            data: {
+                                app_name,
+                                app_key,
+                                app_type,
+                                corpid,
+                                corpsecret,
+                                webhook_key,
+                                chat_name,
+                                user_ids
+                            },
+                            success: function(res){
+                                table.reload('LAY-app-content-work-weixin');
+                                layer.close(index);
+                            }
+                        })
+                    }
+                })
+            }
+        }
+
+        // 表头按钮
+        $('.layui-btn.layuiadmin-btn-work-weixin').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
 
     })
 

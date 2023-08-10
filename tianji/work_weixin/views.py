@@ -15,3 +15,14 @@ class WorkWeixinSettingListView(View):
 
     def get(self, request):
         return services.get_setting_list(request)
+
+
+class WorkWeixinAddView(View):
+
+    def post(self, request):
+        return services.add_setting(request)
+
+
+class WorkWeixinUpdView(View):
+    def post(self, request):
+        return services.upd_setting(request)

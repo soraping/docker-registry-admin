@@ -27,11 +27,37 @@ def get_setting_list(request):
 
 
 def add_setting(request):
-    pass
+    try:
+        # 接收请求参数
+        json_data = request.body.decode()
+        # 数据类型转换
+        dict_data = ujson.loads(json_data)
+        # 参数为空判断
+        if not dict_data.get('app_name'):
+            return R.failed(ErrorEnum.PARAMS_IS_NULL)
+    except Exception as e:
+        logger.error("添加失败：{}".format(e))
+        return R.failed(ErrorEnum.PARAMS_IS_ERROR)
+
+    models.WorkWeixin.objects.create(**dict_data)
+    return R.success()
 
 
 def upd_setting(request):
-    pass
+    try:
+        # 接收请求参数
+        json_data = request.body.decode()
+        # 数据类型转换
+        dict_data = ujson.loads(json_data)
+        # 参数为空判断
+        if not dict_data.get('id'):
+            return R.failed(ErrorEnum.PARAMS_IS_NULL)
+    except Exception as e:
+        logger.error("添加失败：{}".format(e))
+        return R.failed(ErrorEnum.PARAMS_IS_ERROR)
+
+    models.WorkWeixin.objects.filter(id=dict_data.get('id')).update(**dict_data)
+    return R.success()
 
 
 def send_msg_by_group(data):
@@ -48,6 +74,8 @@ def send_msg_by_robots(data):
     origin_context = event.get('origin_context')
     if origin_context:
         match_obj = re.match(r'.*graylog_0:(.*)', origin_context)
+        if match_obj is None:
+            return
         message_id = match_obj.group(1)
         redirect_url = f'{env.GRAY_LOG_DOMAIN}/messages/graylog_0/{message_id}'
 
