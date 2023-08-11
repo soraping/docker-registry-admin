@@ -53,8 +53,11 @@
             var project_name = $('#select-project-name').val()
             var project_id = $('#select-project-id').val()
 
+            // tableId
+            var tableDomId = 'LAY-app-content-hosts'
+
             table.render({
-                elem: '#LAY-app-content-hosts'
+                elem: '#' + tableDomId
                 ,url: layui.setter.apiHost + '/project/host-list?project_id=' + project_id
                 ,page: false
                 ,height: "600px"
@@ -64,12 +67,13 @@
                     ,{field: 'virtual_ip', title: '虚拟IP', width: 150}
                     ,{field: 'status', width: 100, title: '状态', templet: function(d){
                             // 前端新增一个启动中(3)的状态
-                            let status_val = ["暂停中", "运行中", "已删除", "启动中"]
+                            let status_val = ["暂停中", "未启动", "启动中", "已启动", "已删除"]
                             let status_val_class = [
                                 "layui-btn-warm",
-                                "",
-                                "layui-btn-danger",
-                                "layui-btn-normal"
+                                "layui-bg-gray",
+                                "layui-btn-normal",
+                                "layui-btn-success",
+                                "layui-btn-danger"
                             ]
                             return '<button class= "layui-btn layui-btn-xs ' + status_val_class[d.status] + '">' + status_val[d.status] + '</button>'
                         }}
@@ -86,7 +90,8 @@
                                 var status = item == d.tag ? 'selected' : ''
                                 return pre + '<option value="'+ item +'" '+ status +'>'+ item +'</option>'
                             }, "")
-                            return '<select name="project-image-tag-change" lay-filter="project-image-tag-change">' +
+                            return '<select name="project-image-tag-change" data-hostId="'+ d.id +'" lay-filter="project-image-tag-change">' +
+                                    '<option value="">请选择版本</option>' +
                                     options +
                                 '</select>'
                         }}
@@ -164,14 +169,47 @@
             // tag 选择触发器
             layui.form.on('select(project-image-tag-change)', function(data){
 
-                var value = data.value; // 获得被选中的值
-                var elem = data.elem; // select 原始dom
-                var othis = data.othis; // 获得 select 元素被替换后的 jQuery 对象
+                var changeTag = data.value; // 获得被选中的值
+                var selectElem = data.elem; // select 原始dom
+                // 获取当前表格数据
+                var tableData = table.cache[tableDomId]
+                // host id
+                var hostId = selectElem.getAttribute("data-hostId")
+                var lineData = tableData.filter(item => item['id'] == hostId)[0]
+                // 相同tag直接返回
+                if(changeTag == lineData['tag']) return
+
+                layer.confirm(`确定要更换成 ${changeTag} 这个版本吗?`,
+                    {icon: 3, title:'提示'},
+                    function ok(index){
+                        // 触发更新时间
+                        // step-1 暂停机器
+                        // step-2 启动新版本
+                        // 触发进度条
+                        var progress_filter = project_name + "_" + hostId
+                        element.progress(progress_filter, '100%')
+                        // 提交更换版本事件
+                        layer.close(index)
+                    },
+                    function cancel(index){
+                        // 将select 值复原
+                        table.reload(tableDomId, {
+                            data: tableData.map(item => {
+                                if(item.id == hostId){
+                                    item.tag = lineData['tag']
+                                }
+                                return item
+                            })
+                        })
+                        layer.close(index);
+                    }
+                )
+
 
               });
 
             // 操作按钮
-            table.on('tool(LAY-app-content-hosts)', function(obj){
+            table.on(`tool(${tableDomId})`, function(obj){
                 console.log('obj', obj)
             })
         })
