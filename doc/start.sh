@@ -3,13 +3,13 @@
 BASE_DIR=/home
 
 # nginx
-mkdir -p $BASE_DIR/mydata/nginx/conf/conf.d
+mkdir -p $BASE_DIR/mydata/nginx
 mkdir -p $BASE_DIR/mydata/nginx/logs
 mkdir -p $BASE_DIR/mydata/nginx/cert
 mkdir -p $BASE_DIR/mydata/nginx/www
 docker run --name nginx -p 9001:80 -d nginx > /dev/null
-docker cp nginx:/etc/nginx/nginx.conf $BASE_DIR/mydata/nginx/conf/nginx.conf > /dev/null
-docker cp nginx:/etc/nginx/conf.d $BASE_DIR/mydata/nginx/conf/conf.d > /dev/null
+docker cp nginx:/etc/nginx/nginx.conf $BASE_DIR/mydata/nginx/nginx.conf > /dev/null
+docker cp nginx:/etc/nginx/conf.d $BASE_DIR/mydata/nginx/ > /dev/null
 docker cp nginx:/usr/share/nginx/html $BASE_DIR/mydata/nginx/ > /dev/null
 docker stop nginx > /dev/null
 docker rm nginx > /dev/null
