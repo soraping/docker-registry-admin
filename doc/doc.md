@@ -162,4 +162,12 @@ https://blog.csdn.net/JasonXu94/article/details/128890123
 
 [zabbix](https://blog.csdn.net/weixin_42170236/article/details/99942384)
 
-[anible](https://blog.csdn.net/w918589859/article/details/111467805)
+[ansible](https://blog.csdn.net/w918589859/article/details/111467805)
+
+[ansible](http://www.ansible.com.cn/)
+
+[Filezilla 读取目录列表失败](https://blog.csdn.net/weixin_46183779/article/details/122461731)
+
+[centos7~等 FTP登录时，解决报错530，500，421等错误](https://blog.csdn.net/weixin_44657888/article/details/131289855)
+
+[jdk配置](https://baijiahao.baidu.com/s?id=1761118677137446595&wfr=spider&for=pc)
