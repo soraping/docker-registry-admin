@@ -48,14 +48,16 @@ class ProjectHostModel(BaseModel):
 
     HOST_STATUS_CHOICES = (
         (0, "暂停中"),
-        (1, "运行中"),
-        (2, "已删除")
+        (1, "未启动"),
+        (2, "启动中"),
+        (3, "已启动"),
+        (4, "已删除")
     )
     status = models.IntegerField(
         choices=HOST_STATUS_CHOICES,
-        default=0,
-        verbose_name="负载状态：0-暂停中，1-运行中，2-已删除",
-        help_text="负载状态：0-暂停中，1-运行中，2-已删除"
+        default=1,
+        verbose_name="负载状态：0-未启动，1-暂停中，2-启动中, 3-已启动, 4-已删除",
+        help_text="负载状态：0-未启动，1-暂停中，2-启动中, 3-已启动, 4-已删除"
     )
 
     class Meta:

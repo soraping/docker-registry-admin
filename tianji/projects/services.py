@@ -3,7 +3,6 @@ from django.http import HttpRequest
 from tianji.projects import models, forms
 from utils import ErrorEnum, R
 from constant import constants
-import ujson
 from django.forms.models import model_to_dict
 from django.db.models import  Q
 import logging
@@ -35,19 +34,8 @@ def project_add(request):
     """
     新增项目
     """
-    try:
-        # 接收请求参数
-        json_data = request.body.decode()
-        # 数据类型转换
-        dict_data = ujson.loads(json_data)
-        # 参数为空判断
-        if not dict_data.get('name'):
-            return R.failed(ErrorEnum.PARAMS_IS_NULL)
-    except Exception as e:
-        logger.error("添加失败：{}".format(e))
-        return R.failed(ErrorEnum.PARAMS_IS_ERROR)
-
-    project_form = forms.ProjectForm(dict_data)
+    post_data = request.POST
+    project_form = forms.ProjectForm(post_data)
     if project_form.is_valid():
         project_form.save()
         return R.success()
@@ -55,15 +43,10 @@ def project_add(request):
 
 
 def project_upd(request):
-    try:
-        json_data = request.body.decode()
-        dict_data = ujson.loads(json_data)
-        if not dict_data.get('id'):
-            return R.failed(ErrorEnum.PARAMS_IS_NULL)
-    except Exception as e:
-        logger.error("更新失败：{}".format(e))
-        return R.failed(ErrorEnum.PARAMS_IS_ERROR)
 
+    dict_data = request.POST
+    if not dict_data.get('id'):
+        return R.failed(ErrorEnum.PARAMS_IS_NULL)
     models.ProjectModel.objects.filter(id=dict_data.get('id')) \
         .update(desc=dict_data.get('desc'), name=dict_data.get('name'))
 
@@ -92,7 +75,7 @@ def project_host_list(request):
     # hosts_set = models.ProjectHostModel.objects.filter(project__id=project_id).filter(~Q(status=2))
     # 使用 related_name 反查
     project = models.ProjectModel.objects.get(id=project_id)
-    hosts_set = project.hosts.filter(~Q(status=2))
+    hosts_set = project.hosts.filter(~Q(status=4))
     hosts = [
         {
             "id": host.id,
@@ -113,18 +96,7 @@ def add_host(request):
     """
     新增负载
     """
-    try:
-        # 接收请求参数
-        json_data = request.body.decode()
-        # 数据类型转换
-        dict_data = ujson.loads(json_data)
-        # 参数为空判断
-        if not dict_data.get('project_id'):
-            return R.failed(ErrorEnum.PARAMS_IS_NULL)
-    except Exception as e:
-        logger.error("添加负载失败：{}".format(e))
-        return R.failed(ErrorEnum.PARAMS_IS_ERROR)
-
+    dict_data = request.POST
     hosts_form = forms.ProjectHostForm(dict_data)
     if hosts_form.is_valid():
         project_info = models.ProjectModel.objects.get(id=dict_data.get('project_id'))
@@ -140,4 +112,27 @@ def upd_host(request):
     """
     修改负载信息
     """
+    pass
+
+
+def change_tag(request):
+    """
+    切换版本
+    """
+    dict_data = request.POST
+    if not dict_data.get('id') or not dict_data.get('tag') or not dict_data.get('project_id'):
+        return R.failed(ErrorEnum.PARAMS_IS_NULL)
+
+    # 需要切换的版本
+    change_tag = dict_data.get('tag')
+    project_id = dict_data.get('project_id')
+
+    # 使用消息队列
+
+    # 修改数据库信息
+    # models.ProjectHostModel.objects.filter(id=dict_data.get('id')).update(tag=change_tag)
+
+    return R.success()
+
+def loop_tag_status(request):
     pass

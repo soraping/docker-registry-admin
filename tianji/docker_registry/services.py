@@ -1,4 +1,3 @@
-from pprint import pprint
 from utils import ErrorEnum, R
 from tianji.docker_registry.models import DockerImageTagsModel
 

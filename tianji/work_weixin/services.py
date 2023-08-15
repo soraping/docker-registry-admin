@@ -27,35 +27,15 @@ def get_setting_list(request):
 
 
 def add_setting(request):
-    try:
-        # 接收请求参数
-        json_data = request.body.decode()
-        # 数据类型转换
-        dict_data = ujson.loads(json_data)
-        # 参数为空判断
-        if not dict_data.get('app_name'):
-            return R.failed(ErrorEnum.PARAMS_IS_NULL)
-    except Exception as e:
-        logger.error("添加失败：{}".format(e))
-        return R.failed(ErrorEnum.PARAMS_IS_ERROR)
-
+    dict_data = request.POST
     models.WorkWeixin.objects.create(**dict_data)
     return R.success()
 
 
 def upd_setting(request):
-    try:
-        # 接收请求参数
-        json_data = request.body.decode()
-        # 数据类型转换
-        dict_data = ujson.loads(json_data)
-        # 参数为空判断
-        if not dict_data.get('id'):
-            return R.failed(ErrorEnum.PARAMS_IS_NULL)
-    except Exception as e:
-        logger.error("添加失败：{}".format(e))
-        return R.failed(ErrorEnum.PARAMS_IS_ERROR)
-
+    dict_data = request.POST
+    if not dict_data.get('id'):
+        return R.failed(ErrorEnum.PARAMS_IS_NULL)
     models.WorkWeixin.objects.filter(id=dict_data.get('id')).update(**dict_data)
     return R.success()
 
