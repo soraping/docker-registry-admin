@@ -166,8 +166,29 @@ https://blog.csdn.net/JasonXu94/article/details/128890123
 
 [ansible](http://www.ansible.com.cn/)
 
+[ansible 中文指南](http://www.ansible.com.cn/docs/intro_installation.html)
+
+[Ansible第一章----配置](https://blog.csdn.net/m0_62901004/article/details/130087433)
+
+[ansible的七个命令](https://blog.csdn.net/yuezhilangniao/article/details/115799713)
+
+[Ansible 配置](https://blog.csdn.net/m0_62901004/article/details/130087433)
+
 [Filezilla 读取目录列表失败](https://blog.csdn.net/weixin_46183779/article/details/122461731)
 
 [centos7~等 FTP登录时，解决报错530，500，421等错误](https://blog.csdn.net/weixin_44657888/article/details/131289855)
 
 [jdk配置](https://baijiahao.baidu.com/s?id=1761118677137446595&wfr=spider&for=pc)
+
+[什么是SFTP，看这篇就够了](https://blog.csdn.net/weixin_42046751/article/details/105250458)
+
+[centos7 虚拟机网卡](https://blog.csdn.net/Yonggie/article/details/129060544)
+
+[自动化运维工具——ansible详解](https://www.cnblogs.com/keerya/p/7987886.html)
+
+[后台开发命令 365](https://dablelv.github.io/backend-cmd/)
+
+[ssh-keygen密钥](https://zhuanlan.zhihu.com/p/514903590)
+
+[linux给用户添加sudo权限](https://dandelioncloud.cn/article/details/1617475284666384386)
+
