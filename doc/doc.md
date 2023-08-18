@@ -1,5 +1,20 @@
 ### docker
 
+```bash
+yum remove docker \
+docker-client \
+docker-client-latest \
+docker-common \
+docker-latest \
+docker-latest-logrotate \
+docker-logrotate \
+docker-selinux \
+docker-engine-selinux \
+docker-engine \
+docker-ce
+```
+[centos7 安装 docker](https://blog.csdn.net/qq_39997939/article/details/131005939)
+
 [docker常用命令](https://blog.csdn.net/IT_Holmes/article/details/126601340)
 
 [docker 命令查询](https://www.cjavapy.com/category/93/)
@@ -191,4 +206,6 @@ https://blog.csdn.net/JasonXu94/article/details/128890123
 [ssh-keygen密钥](https://zhuanlan.zhihu.com/p/514903590)
 
 [linux给用户添加sudo权限](https://dandelioncloud.cn/article/details/1617475284666384386)
+
+[k8s](https://www.cnblogs.com/chiangchou/p/k8s-1.html)
 
