@@ -187,6 +187,12 @@ https://blog.csdn.net/JasonXu94/article/details/128890123
 
 [ansible的七个命令](https://blog.csdn.net/yuezhilangniao/article/details/115799713)
 
+[ansible 教程](https://www.cnblogs.com/xuwymm/category/1998392.html?page=2)
+
+[ansible 教程](https://blog.csdn.net/qq_35887546/category_9731841_3.html)
+
+[ansible debug](https://blog.csdn.net/m0_37814112/article/details/129396441)
+
 [Ansible 配置](https://blog.csdn.net/m0_62901004/article/details/130087433)
 
 [Filezilla 读取目录列表失败](https://blog.csdn.net/weixin_46183779/article/details/122461731)
