@@ -183,9 +183,11 @@ https://blog.csdn.net/JasonXu94/article/details/128890123
 
 [ansible 中文指南](http://www.ansible.com.cn/docs/intro_installation.html)
 
-[Ansible第一章----配置](https://blog.csdn.net/m0_62901004/article/details/130087433)
-
 [ansible的七个命令](https://blog.csdn.net/yuezhilangniao/article/details/115799713)
+
+[ansible-playbook 详解](https://www.cnblogs.com/keerya/p/8004566.html)
+
+[ansible自动化运维（二）剧本、角色编写实战](https://blog.csdn.net/s1429583654/article/details/131930538)
 
 [ansible 教程](https://www.cnblogs.com/xuwymm/category/1998392.html?page=2)
 
@@ -193,7 +195,7 @@ https://blog.csdn.net/JasonXu94/article/details/128890123
 
 [ansible debug](https://blog.csdn.net/m0_37814112/article/details/129396441)
 
-[Ansible 配置](https://blog.csdn.net/m0_62901004/article/details/130087433)
+[Ansible 配置免密](https://blog.csdn.net/m0_62901004/article/details/130087433)
 
 [Filezilla 读取目录列表失败](https://blog.csdn.net/weixin_46183779/article/details/122461731)
 
@@ -215,3 +217,6 @@ https://blog.csdn.net/JasonXu94/article/details/128890123
 
 [k8s](https://www.cnblogs.com/chiangchou/p/k8s-1.html)
 
+[yml 语法](https://zhuanlan.zhihu.com/p/493137181?utm_id=0&wd=&eqid=90ace45500080f660000000664744b35)
+
+https://blog.csdn.net/woshizhangliang999/article/details/105473237/
