@@ -265,3 +265,57 @@ volumes:
 ```bash
 docker-compose up -d mall-product
 ```
+
+使用 redis 自增设置编号
+
+```java
+@Component
+public class IdGeneratorUtils {
+
+    private final static String APPLY_NO_INC_KEY = "order_no_ick_key";
+    private final static String APPLY_NO_PRE = "A";
+    private final static Integer DEFAULT_LENGTH = 6;
+    
+    /**
+     * 申请单编号
+     * @return
+     */
+    public static String applyIdGenerator(){
+        Long inc = RedisUtils.incr(APPLY_NO_INC_KEY, 1);
+        String seq = leftZero(inc, 8);
+        String day = getCurrentDate("yyyyMMdd");
+        return APPLY_NO_PRE + day + seq;
+    }
+
+
+    /**
+     * format yyyyMMdd
+     * @return
+     */
+    private static String getCurrentDate(String format){
+        LocalDate localDate = LocalDate.now();
+        DateTimeFormatter df = DateTimeFormatter.ofPattern(format);
+        return df.format(localDate);
+    }
+
+    /**
+     * 补0
+     * @param seq
+     * @return
+     */
+    private static String leftZero(Long seq, Integer length) {
+        String str = String.valueOf(seq);
+        int len = str.length();
+        if (len >= length) {
+            return str;
+        }
+        int rest = length - len;
+        StringJoiner stringJoiner = new StringJoiner("");
+        for (int i = 0; i < rest; i++) {
+            stringJoiner.add("0");
+        }
+        stringJoiner.add(str);
+        return stringJoiner.toString();
+    }
+}
+```
