@@ -99,6 +99,10 @@ docker-ce
 
 [shiro](https://blog.csdn.net/qq_40053836/article/details/98970804)
 
+[springboot 自定义参数解析器，实现自定义参数的注入](https://blog.csdn.net/hxj413977035/article/details/127028630)
+
+[Sa-Token](https://sa-token.cc/doc.html#/)
+
 ### nginx
 [nginx request_id 全链路](https://segmentfault.com/a/1190000041451358)
 
