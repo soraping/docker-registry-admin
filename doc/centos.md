@@ -41,10 +41,13 @@ yum install docker-ce
 
 systemctl start docker
 
+# 不仅要设置镜像加速
+# 还要配置镜像存储位置
 sudo mkdir -p /etc/docker
 sudo tee /etc/docker/daemon.json <<EOF
 {
-  "registry-mirrors": ["https://01sy6s7g.mirror.aliyuncs.com"]
+  "registry-mirrors": ["https://01sy6s7g.mirror.aliyuncs.com"],
+  "data-root": "/home/data/docker"
 }
 EOF
 sudo systemctl daemon-reload

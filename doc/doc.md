@@ -103,6 +103,20 @@ docker-ce
 
 [Sa-Token](https://sa-token.cc/doc.html#/)
 
+[docker nacos 集群](https://zhuanlan.zhihu.com/p/394967818)
+
+[docker nacos 集群](https://zhuanlan.zhihu.com/p/527114550)
+
+[nacos 集群](https://www.zhihu.com/question/502655081/answer/2464254900)
+
+[mysql 主从主备](https://zhuanlan.zhihu.com/p/527787597)
+
+[mysql 主从搭建](https://blog.csdn.net/weixin_52324111/article/details/128058857)
+
+[mysql 主从搭建](https://blog.csdn.net/ne_123456/article/details/126910089)
+
+[docker mysql 主从搭建](https://blog.csdn.net/m0_58660606/article/details/131695299)
+
 ### nginx
 [nginx request_id 全链路](https://segmentfault.com/a/1190000041451358)
 
@@ -228,3 +242,5 @@ https://blog.csdn.net/woshizhangliang999/article/details/105473237/
 https://blog.csdn.net/weixin_50812994/article/details/123517941
 
 [vue3 调试](https://www.cnblogs.com/samsara-yx/p/17030764.html)
+
+[用Packer自动构建公有云系统镜像](https://zhuanlan.zhihu.com/p/571971950?utm_id=0)
