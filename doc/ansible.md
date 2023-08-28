@@ -54,6 +54,8 @@ ssh-cpoy-id -i /home/ansible/.ssh/id_rsa.pub ansible@192.168.2.2
 
 ### 安装
 
+
+
 ### 模块
 
 ### 剧本

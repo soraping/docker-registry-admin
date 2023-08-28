@@ -3,6 +3,10 @@
 ```bash
 yum update -y
 sudo yum install -y yum-utils
+
+# python3 环境支持
+yum install python3
+yum install python3-pip
 ```
 
 ### 安装 `ftp`
@@ -23,6 +27,15 @@ systemctl start vsftpd.service
 
 # 停止
 systemctl enable vsftpd.service
+
+# 配置账号及权限
+# 新建ftp组
+groupadd ftp
+# 新建 ftpuser 用户，所属 ftp 组
+# -d 指定用户根目录
+# -s 指定shell脚本为/sbin/nologin，表示不允许shell登录
+useradd -g ftp -d /home/ftpuser -s /sbin/nologin -m ftpuser
+
 
 # 先备份原来的vsftpd配置文件，然后去掉里面的注释行，剩下的就是默认配置
 cd /etc/vsftpd/
@@ -58,7 +71,7 @@ systemctl enable docker.service
 systemctl disable docker.service
 
 # 关闭docker重启服务
-systemctl stop docker.socke
+systemctl stop docker.sock
 
 # docker-compose 安装
 sudo curl -L "https://github.com/docker/compose/releases/download/v2.20.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose

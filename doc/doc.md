@@ -75,6 +75,8 @@ docker-ce
 
 [Docker 实战笔记：多阶段构建镜像](https://www.codenong.com/s1190000022826606/)
 
+[无法找到docker.sock](https://blog.csdn.net/m0_49023005/article/details/131752122)
+
 ### springboot
 
 [springboot 教程](https://blog.csdn.net/weixin_47872288/article/details/119514865)
@@ -114,6 +116,8 @@ docker-ce
 [mysql 主从搭建](https://blog.csdn.net/weixin_52324111/article/details/128058857)
 
 [mysql 主从搭建](https://blog.csdn.net/ne_123456/article/details/126910089)
+
+[Mysql架构篇--Mysql(M-S) 主从同步](https://blog.csdn.net/l123lgx/article/details/131430713)
 
 [docker mysql 主从搭建](https://blog.csdn.net/m0_58660606/article/details/131695299)
 
@@ -244,3 +248,9 @@ https://blog.csdn.net/weixin_50812994/article/details/123517941
 [vue3 调试](https://www.cnblogs.com/samsara-yx/p/17030764.html)
 
 [用Packer自动构建公有云系统镜像](https://zhuanlan.zhihu.com/p/571971950?utm_id=0)
+
+[redis集群配置](https://blog.csdn.net/zhangbeizhen18/article/details/131097115)
+
+[redis集群状态](https://blog.51cto.com/u_16175430/6829361)
+
+[Linux中创建sftp用户并限制目录权限](https://blog.csdn.net/yx15156537218/article/details/130226970)
