@@ -111,6 +111,16 @@ docker-ce
 
 [nacos 集群](https://www.zhihu.com/question/502655081/answer/2464254900)
 
+```bash
+# 配置 conf/cluster.conf 时，一定要填机器的网卡ip地址
+ifconfig | grep inet
+
+# 填写内网地址也会出现异常，导致服务注册不进去
+# 所以，几台机器这个文件要保持一样的
+```
+
+[nacos 集群踩坑](https://blog.csdn.net/m0_50932526/article/details/128065403)
+
 [mysql 主从主备](https://zhuanlan.zhihu.com/p/527787597)
 
 [mysql 主从搭建](https://blog.csdn.net/weixin_52324111/article/details/128058857)
