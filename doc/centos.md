@@ -7,6 +7,8 @@ sudo yum install -y yum-utils
 # python3 环境支持
 yum install python3
 yum install python3-pip
+
+# 注：安装失败，利用yum clean和yum list清理缓存
 ```
 
 ### 安装 `ftp`

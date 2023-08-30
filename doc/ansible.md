@@ -29,6 +29,26 @@ vim /etc/ansible/inventory
 [web]
 192.168.1.1
 192.168.2.2
+
+# 定义变量
+[web:vars]
+ansible_ssh_port=10086
+ansible_ssh_user=root
+ansible_ssh_pass=123456
+```
+
+也可以指定 inventory 文件
+
+```bash
+touch /home/hosts
+vim /home/hosts
+
+[web]
+192.168.1.1
+192.168.2.2
+
+# -i 指定主机清单文件
+ansible -i /home/hosts web -m ping
 ```
 
 - 主控端生成公私密钥，并将公钥发送给受控机
@@ -38,6 +58,7 @@ vim /etc/ansible/inventory
 su ansible
 
 # 生成密钥文件 /home/ansible/.ssh 文件夹内
+# https://zhuanlan.zhihu.com/p/514903590
 ssh-keygen -t rsa
 
 # 切换到 root
@@ -54,9 +75,35 @@ ssh-cpoy-id -i /home/ansible/.ssh/id_rsa.pub ansible@192.168.2.2
 
 ### 安装
 
+```bash
+# yum 安装
+yum install epel-release -y
+yum install ansible -y
 
+# pip 安装(推荐)
+pip install ansible -i https://mirrors.aliyun.com/pypi/simple
+```
 
-### 模块
+### 常用模块
+
+- ping 检测主机是否连通
+
+```bash
+ansible -i hosts web -m ping
+```
+
+- shell 万能模块
+
+```bash
+ansible -i hosts web -m shell -a 'cat /etc/passwd |grep "root"'
+```
+
+- copy 将文件复制到远程主机，同时支持给定内容生成文件和修改权限等
+
+```bash
+
+```
+
 
 ### 剧本
 
