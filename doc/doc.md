@@ -79,11 +79,15 @@ docker-ce
 
 [解决Docker容器内无法访问外网问题](https://blog.csdn.net/qq_38225558/article/details/122720077)
 
+[docker容器不能访问外网解决](https://blog.csdn.net/weixin_43702146/article/details/126098133)
+
 ### springboot
 
 [springboot 教程](https://blog.csdn.net/weixin_47872288/article/details/119514865)
 
 [springboot 启动后执行指令](https://blog.csdn.net/shaofengzong/article/details/127249926)
+
+[@Configuration和@Bean注解](https://blog.csdn.net/weixin_45755816/article/details/121424751)
 
 [spring 分库分表](https://blog.csdn.net/crazymakercircle/article/details/123420859)
 
@@ -113,6 +117,12 @@ docker-ce
 
 [nacos 集群](https://www.zhihu.com/question/502655081/answer/2464254900)
 
+[SpringBoot实战（十）集成多数据源dynamic-datasource](https://blog.csdn.net/qq_33204709/article/details/128376180)
+
+[Mysql主从同步搭建，Springboot读写分离实现](https://blog.csdn.net/qq_33806267/article/details/131359179)
+
+[Spring Boot——整合Druid](https://blog.csdn.net/Huang_ZX_259/article/details/122218607)
+
 ```bash
 # 配置 conf/cluster.conf 时，一定要填机器的网卡ip地址
 ifconfig | grep inet
@@ -132,6 +142,10 @@ ifconfig | grep inet
 [Mysql架构篇--Mysql(M-S) 主从同步](https://blog.csdn.net/l123lgx/article/details/131430713)
 
 [docker mysql 主从搭建](https://blog.csdn.net/m0_58660606/article/details/131695299)
+
+### mq
+
+[RabbitMQ详解，用心看完这一篇就够了【重点】](https://blog.csdn.net/weixin_42039228/article/details/123493937)
 
 ### nginx
 [nginx request_id 全链路](https://segmentfault.com/a/1190000041451358)
@@ -266,3 +280,5 @@ https://blog.csdn.net/weixin_50812994/article/details/123517941
 [redis集群状态](https://blog.51cto.com/u_16175430/6829361)
 
 [Linux中创建sftp用户并限制目录权限](https://blog.csdn.net/yx15156537218/article/details/130226970)
+
+[服务器的时间与UTC有偏差](https://www.ngui.cc/zz/2177235.html?action=onClick)
