@@ -121,7 +121,16 @@ docker-ce
 
 [Mysql主从同步搭建，Springboot读写分离实现](https://blog.csdn.net/qq_33806267/article/details/131359179)
 
+[Spring Boot 数据库操作Druid和HikariDataSource](https://blog.csdn.net/apple_67445472/article/details/130738772)
+
 [Spring Boot——整合Druid](https://blog.csdn.net/Huang_ZX_259/article/details/122218607)
+
+[SpringBoot-整合druid](https://blog.csdn.net/qq_44981526/article/details/126336010)
+
+[SpringBoot Druid Dynamic动态数据源配置连接池](https://blog.csdn.net/cn_lynn/article/details/123288515)
+
+[SpringBoot+Durid+dynamic-datasource实现多数据源分布式事务](https://blog.51cto.com/loveddz/6544321)
+
 
 ```bash
 # 配置 conf/cluster.conf 时，一定要填机器的网卡ip地址
@@ -282,3 +291,5 @@ https://blog.csdn.net/weixin_50812994/article/details/123517941
 [Linux中创建sftp用户并限制目录权限](https://blog.csdn.net/yx15156537218/article/details/130226970)
 
 [服务器的时间与UTC有偏差](https://www.ngui.cc/zz/2177235.html?action=onClick)
+
+[linux 安装 mysql](https://blog.csdn.net/study_c0/article/details/127413569)
