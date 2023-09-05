@@ -131,6 +131,8 @@ docker-ce
 
 [ElasticSearch最新版快速入门详解](https://blog.csdn.net/qq_26803795/article/details/106423578)
 
+[最清晰易懂的Elasticsearch操作手册](https://ropledata.blog.csdn.net/article/details/106834609)
+
 ```bash
 # 配置 conf/cluster.conf 时，一定要填机器的网卡ip地址
 ifconfig | grep inet
