@@ -101,6 +101,10 @@ docker-ce
 
 [logback全链路](https://blog.csdn.net/zhibo_lv/article/details/105093808)
 
+[SpringBoot整合dubbo以及nacos](https://blog.csdn.net/weixin_46390248/article/details/130449075)
+
+[nacos 配置中心(精品)](https://blog.csdn.net/qq_53037676/article/details/131503431)
+
 [dubbo Filter](https://blog.51cto.com/Saintmm/5544141)
 
 [dubbo源码-隐式传参](https://blog.csdn.net/CPLASF_/article/details/123016476)
