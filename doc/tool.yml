@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+
+  rabbitmq:
+    image: rabbitmq:management
+    # restart: always
+    networks:
+      - tools
+    privileged: true
+    container_name: rabbitmq
+    ports:
+      - 15672:15672
+      - 5672:5672
+      - 25672:25672
+    volumes:
+      - /Users/caoping/data/rabbitmq:/var/lib/rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin123
+
+
+  kibana:
+    image: kibana:8.4.3
+    container_name: kibana
+    networks:
+      - es_net
+    # restart: always
+    ports:
+      - 5601:5601
+    volumes:
+      - /Users/caoping/data/kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
+    environment:
+      ELASTICSEARCH_HOSTS: http://es:9200
+      ELASTICSEARCH_URL: http://es:9200
+
+  es:
+    image: elasticsearch:8.4.3
+    container_name: es
+    networks:
+      - es_net
+    # restart: always
+    ports:
+      - 9200:9200
+      - 9300:9300
+    privileged: true
+    volumes:
+      - /Users/caoping/data/es/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - /Users/caoping/data/es/logs:/usr/share/elasticsearch/logs
+      - /Users/caoping/data/es/data:/usr/share/elasticsearch/data
+      - /Users/caoping/data/es/plugins:/usr/share/elasticsearch/plugins
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - discovery.type=single-node
+
+
+
+networks:
+  es_net:
+    driver: bridge
+  tools:
+    driver: bridge

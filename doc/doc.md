@@ -133,6 +133,14 @@ docker-ce
 
 [ElasticSearch中文分词](https://blog.csdn.net/qq_26803795/article/details/106522611)
 
+[elasticsearch IK分词器的安装、使用与扩展](https://blog.csdn.net/xujingyiss/article/details/123902714)
+
+[Docker安装ElasticSearch、Kibana、IK分词器以及设置ES账户密码](https://blog.csdn.net/qq_45645129/article/details/126887576)
+
+[docker安装Elasticsearch7.6集群并设置密码](https://www.cnblogs.com/woshimrf/p/docker-es7.html)
+
+[Docker 安装 Elasticsearch 8.4.3 + Kibana 8.4.3 （账号密码模式）](https://blog.csdn.net/qq_34125999/article/details/127750458)
+
 [最清晰易懂的Elasticsearch操作手册](https://ropledata.blog.csdn.net/article/details/106834609)
 
 ```bash
