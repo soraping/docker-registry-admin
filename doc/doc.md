@@ -131,6 +131,8 @@ docker-ce
 
 [ElasticSearch最新版快速入门详解](https://blog.csdn.net/qq_26803795/article/details/106423578)
 
+[ElasticSearch中文分词](https://blog.csdn.net/qq_26803795/article/details/106522611)
+
 [最清晰易懂的Elasticsearch操作手册](https://ropledata.blog.csdn.net/article/details/106834609)
 
 ```bash
