@@ -105,6 +105,8 @@ docker-ce
 
 [nacos 配置中心(精品)](https://blog.csdn.net/qq_53037676/article/details/131503431)
 
+[配置中心 Nacos 不同环境的配置管理方案](https://blog.csdn.net/mnhpo_Q/article/details/126665925)
+
 [dubbo Filter](https://blog.51cto.com/Saintmm/5544141)
 
 [dubbo源码-隐式传参](https://blog.csdn.net/CPLASF_/article/details/123016476)
@@ -123,6 +125,11 @@ docker-ce
 
 [Feign总结](https://blog.csdn.net/xushiyu1996818/article/details/104535899)
 
+[skywalking](https://blog.csdn.net/syc000666/article/details/128670066)
+
+[ElasticSearch从入门到精通](https://blog.csdn.net/JENREY/article/details/81290535)
+
+[ElasticSearch最新版快速入门详解](https://blog.csdn.net/qq_26803795/article/details/106423578)
 
 ```bash
 # 配置 conf/cluster.conf 时，一定要填机器的网卡ip地址
