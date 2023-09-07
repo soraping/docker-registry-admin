@@ -135,6 +135,12 @@ docker-ce
 
 [最清晰易懂的Elasticsearch操作手册](https://ropledata.blog.csdn.net/article/details/106834609)
 
+[Logstash原理介绍及应用](https://blog.csdn.net/huxiang19851114/article/details/113397796)
+
+[elk](https://blog.csdn.net/hansome_hong/article/details/124704141)
+
+[Docker搭建ElasticStack8.9](https://blog.csdn.net/asdasdsaff/article/details/132194686)
+
 ```bash
 # 配置 conf/cluster.conf 时，一定要填机器的网卡ip地址
 ifconfig | grep inet
@@ -188,6 +194,8 @@ ifconfig | grep inet
 [uwsgi 安装](https://blog.csdn.net/JENREY/article/details/86652539)
 
 conda python 高版本安装 uwsgi 肯定报错，所以使用源码编译安装
+
+[PYTHON 读取特别大的EXCEL](https://www.cnblogs.com/xkdn/p/17549326.html)
 
 ```bash
 # 退出虚拟环境
