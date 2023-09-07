@@ -175,6 +175,8 @@ ifconfig | grep inet
 
 [SpringBoot+Durid+dynamic-datasource实现多数据源分布式事务](https://blog.51cto.com/loveddz/6544321)
 
+[SpringBoot使用netty](https://blog.csdn.net/weixin_43835717/article/details/94227242)
+
 ### mq
 
 [RabbitMQ详解，用心看完这一篇就够了【重点】](https://blog.csdn.net/weixin_42039228/article/details/123493937)
