@@ -91,6 +91,8 @@ docker-ce
 
 [spring 分库分表](https://blog.csdn.net/crazymakercircle/article/details/123420859)
 
+[mybatis plus条件拼接等于、大于、不等于等等](https://blog.csdn.net/FurtherSkyQ/article/details/118155483)
+
 [nacos 启动参数优化](https://refblogs.com/article/342)
 
 [springboot 接入 graylog](https://blog.csdn.net/weduest/article/details/127858768)
@@ -178,6 +180,10 @@ ifconfig | grep inet
 [SpringBoot使用netty](https://blog.csdn.net/weixin_43835717/article/details/94227242)
 
 [【硬核】肝了一月的Netty知识点](https://blog.csdn.net/qq_35190492/article/details/113174359)
+
+[SpringBoot集成Netty实现消息推送、接收、自动重连](https://blog.csdn.net/qq_31150503/article/details/125829994)
+
+[Spring Boot 整合Netty 登录、心跳、自定义编解码、重连](https://blog.csdn.net/qq_27828675/article/details/122101564)
 
 ### mq
 
