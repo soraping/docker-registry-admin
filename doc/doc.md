@@ -91,6 +91,8 @@ docker-ce
 
 [spring 分库分表](https://blog.csdn.net/crazymakercircle/article/details/123420859)
 
+[mybatis plus条件拼接等于、大于、不等于等等](https://blog.csdn.net/FurtherSkyQ/article/details/118155483)
+
 [nacos 启动参数优化](https://refblogs.com/article/342)
 
 [springboot 接入 graylog](https://blog.csdn.net/weduest/article/details/127858768)
@@ -143,6 +145,12 @@ docker-ce
 
 [最清晰易懂的Elasticsearch操作手册](https://ropledata.blog.csdn.net/article/details/106834609)
 
+[Logstash原理介绍及应用](https://blog.csdn.net/huxiang19851114/article/details/113397796)
+
+[elk](https://blog.csdn.net/hansome_hong/article/details/124704141)
+
+[Docker搭建ElasticStack8.9](https://blog.csdn.net/asdasdsaff/article/details/132194686)
+
 ```bash
 # 配置 conf/cluster.conf 时，一定要填机器的网卡ip地址
 ifconfig | grep inet
@@ -177,6 +185,14 @@ ifconfig | grep inet
 
 [SpringBoot+Durid+dynamic-datasource实现多数据源分布式事务](https://blog.51cto.com/loveddz/6544321)
 
+[SpringBoot使用netty](https://blog.csdn.net/weixin_43835717/article/details/94227242)
+
+[【硬核】肝了一月的Netty知识点](https://blog.csdn.net/qq_35190492/article/details/113174359)
+
+[SpringBoot集成Netty实现消息推送、接收、自动重连](https://blog.csdn.net/qq_31150503/article/details/125829994)
+
+[Spring Boot 整合Netty 登录、心跳、自定义编解码、重连](https://blog.csdn.net/qq_27828675/article/details/122101564)
+
 ### mq
 
 [RabbitMQ详解，用心看完这一篇就够了【重点】](https://blog.csdn.net/weixin_42039228/article/details/123493937)
@@ -196,6 +212,8 @@ ifconfig | grep inet
 [uwsgi 安装](https://blog.csdn.net/JENREY/article/details/86652539)
 
 conda python 高版本安装 uwsgi 肯定报错，所以使用源码编译安装
+
+[PYTHON 读取特别大的EXCEL](https://www.cnblogs.com/xkdn/p/17549326.html)
 
 ```bash
 # 退出虚拟环境
