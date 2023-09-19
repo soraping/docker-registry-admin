@@ -7,6 +7,8 @@ docker run -d -v /home/mydata/db/data:/var/lib/mysql -v /home/mydata/db/conf:/et
 ```bash
 docker exec -it mysql bash
 mysql -uroot -p
+
+# GRANT ALL PRIVILEGES ON *.* TO root@'%' WITH GRANT OPTION;
 ```
 
 ```bash

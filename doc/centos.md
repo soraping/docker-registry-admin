@@ -2,6 +2,7 @@
 
 ```bash
 yum update -y
+sudo yum install net-tools -y
 sudo yum install -y yum-utils
 
 # python3 环境支持
@@ -9,6 +10,10 @@ yum install python3
 yum install python3-pip
 
 # 注：安装失败，利用yum clean和yum list清理缓存
+
+# 开始 ssh
+# https://xiaoxiaomayi.com/vps/p/3371.html
+# https://www.php.cn/faq/488397.html
 ```
 
 ### 安装 `ftp`
@@ -45,16 +50,72 @@ cp vsftpd.conf vsftpd.conf.bak
 grep -v "#" vsftpd.conf.bak > vsftpd.conf
 ```
 
+### 设置 `sftp`
+
+```bash
+# 创建一个主目录，并限制用户只能在该目录中工作
+mkdir -p /home/sftp/
+chown root:root -R /home/sftp/
+chmod -R 755 /home/sftp/
+
+# 创建一个组
+mkdir -p /home/sftp/sftpuser1
+groupadd sftp
+# 创建一个用户，归属于 sftp 组
+useradd -d /home/sftp/sftpuser1 -m -g sftp -s /sbin/nologin sftpuser1
+# 设置密码
+passwd sftpuser1
+# 设置该用户权限
+chown sftpuser1:sftp -R /home/sftp/sftpuser1
+chmod -R 755 /home/sftp/sftpuser1
+
+```
+
+```bash
+# 配置文件修改
+vi /etc/ssh/sshd_config
+```
+
+```
+# 注释掉下面的这行内容，因为配置的 for-sftp 用户没有登录 shell 的权限
+## 不注释的话，登录的时候会返回报错：Received message too long 1416128883
+# Subsystem sftp /usr/libexec/openssh/sftp-server
+# 修改成下面的方式来打开 sftp 服务
+Subsystem sftp internal-sftp
+# Match User 后面的配置内容，只对 Match User 指定的用户生效，多个用户以逗号分隔
+## 也可以配置成 Match Group，对指定的组生效，同样，多个组以逗号分隔
+# Match Group sftp
+Match User sftpuser1
+# 指定 sftp 登录的默认路径
+## 目录必须存在，否则 sftp 连接会报错
+ChrootDirectory /home/sftp
+# 指定 sftp 命令
+ForceCommand internal-sftp
+
+# 这将限制SFTP用户访问其主目录，并禁用任何TCP或X11转发
+AllowTcpForwarding no
+X11Forwarding no
+```
+
+```bash
+# 重启 sftp 服务
+sudo systemctl restart sshd
+```
+
 ### 安装 `docker`
 
 ```bash
 yum install -y yum-utils device-mapper-persistent-data lvm2
 
-yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+# 镜像地址换成aliyun的
+sudo yum-config-manager --add-repo https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 
 yum install docker-ce
 
 systemctl start docker
+
+# 修改docker存储位置
+mkdir -p /home/docker-data/docker
 
 # 不仅要设置镜像加速
 # 还要配置镜像存储位置
@@ -62,7 +123,7 @@ sudo mkdir -p /etc/docker
 sudo tee /etc/docker/daemon.json <<EOF
 {
   "registry-mirrors": ["https://01sy6s7g.mirror.aliyuncs.com"],
-  "data-root": "/home/data/docker"
+  "data-root": "/home/docker-data/docker"
 }
 EOF
 sudo systemctl daemon-reload

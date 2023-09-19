@@ -193,9 +193,33 @@ ifconfig | grep inet
 
 [Spring Boot 整合Netty 登录、心跳、自定义编解码、重连](https://blog.csdn.net/qq_27828675/article/details/122101564)
 
+[SpringCloud——Feign知识整理](https://blog.csdn.net/m0_70325779/article/details/131456336)
+
+[IDEA 最便捷创建 SpringBoot 父子 Module 项目](https://blog.csdn.net/qq_43649223/article/details/128865790)
+
+[SpringBoot、SpringCloud、Spring Cloud Alibaba版本对照表（详细准确）](https://zhuanlan.zhihu.com/p/643508351)
+
+[nacos+feign实现服务之间调用，详细教程](https://blog.csdn.net/weixin_41677422/article/details/114322271)
+
+[SpringCloud+Nacos搭建使用](https://blog.csdn.net/ccczequn/article/details/123532588)
+
+[spring-boot-maven-plugin插件详解](https://zhuanlan.zhihu.com/p/634098705)
+
+[Jenkins 保姆级教程](https://mp.weixin.qq.com/s/WYsLHAJxds35aREMn3CyZQ)
+
 ### mq
 
 [RabbitMQ详解，用心看完这一篇就够了【重点】](https://blog.csdn.net/weixin_42039228/article/details/123493937)
+
+### es
+
+[Elasticsearch学习笔记](https://blog.csdn.net/u011863024/article/details/115721328)
+
+### 工具
+
+[graylog+kafka+zookeeper](https://blog.csdn.net/cucgyfjklx/article/details/122560859)
+
+
 
 ### nginx
 [nginx request_id 全链路](https://segmentfault.com/a/1190000041451358)
@@ -336,3 +360,5 @@ https://blog.csdn.net/weixin_50812994/article/details/123517941
 [服务器的时间与UTC有偏差](https://www.ngui.cc/zz/2177235.html?action=onClick)
 
 [linux 安装 mysql](https://blog.csdn.net/study_c0/article/details/127413569)
+
+[docker 中 redis 配置](https://blog.csdn.net/xuyanqiang123/article/details/131536650)

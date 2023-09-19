@@ -21,7 +21,7 @@ services:
       # 先创建一个容器，将其中的重要文件目录复制出来，再挂在数据卷
       # docker run --name nginx -p 9001:80 -d nginx
       # docker cp nginx:/etc/nginx/nginx.conf /home/nginx/conf/nginx.conf
-      # docker cp nginx:/etc/nginx/conf.d /home/nginx/conf/conf.d
+      # docker cp nginx:/etc/nginx/conf.d /home/nginx/conf.d
       # docker cp nginx:/usr/share/nginx/html /home/nginx/
 
       - /home/mydata/nginx/html:/usr/share/nginx/html
