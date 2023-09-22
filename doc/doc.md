@@ -227,6 +227,10 @@ ifconfig | grep inet
 
 [docker搭建的jenkins环境执行宿主的docker无权限问题](https://code84.com/770853.html)
 
+[Jenkins+Docker+Tomcat 自动化部署项目](https://zhuanlan.zhihu.com/p/503371442)
+
+[史上最全 Jenkins Pipeline流水线详解](https://blog.csdn.net/LinkSLA/article/details/127655372)
+
 ### nginx
 [nginx request_id 全链路](https://segmentfault.com/a/1190000041451358)
 
