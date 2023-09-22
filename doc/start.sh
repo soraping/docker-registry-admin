@@ -39,6 +39,18 @@ htpasswd -Bbn admin admin123 > $auth_dir/htpasswd
 touch $BASE_DATA_PATH/config.yml
 echo "registry auth 密码输出完成"
 
+# jenkins
+mkdir -p $BASE_DATA_PATH/jenkins
+# 设置 maven
+mkidr -p $BASE_DATA_PATH/maven
+# 设置权限
+chown -R 1000:1000 $BASE_DATA_PATH/jenkins
+chown -R 1000:1000 $BASE_DATA_PATH/maven
+chown -R 1000:1000 /usr/bin/git
+chown -R 1000:1000 /etc/localtime
+
+# 修改jenkins插件源
+# https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json
 
 
 echo "项目数据卷创建完毕!"

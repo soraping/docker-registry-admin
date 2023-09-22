@@ -2,6 +2,8 @@
 
 ```bash
 yum update -y
+yum install git -y
+yum install openssh-server -y
 sudo yum install net-tools -y
 sudo yum install -y yum-utils
 

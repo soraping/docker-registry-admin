@@ -205,8 +205,6 @@ ifconfig | grep inet
 
 [spring-boot-maven-plugin插件详解](https://zhuanlan.zhihu.com/p/634098705)
 
-[Jenkins 保姆级教程](https://mp.weixin.qq.com/s/WYsLHAJxds35aREMn3CyZQ)
-
 ### mq
 
 [RabbitMQ详解，用心看完这一篇就够了【重点】](https://blog.csdn.net/weixin_42039228/article/details/123493937)
@@ -219,7 +217,15 @@ ifconfig | grep inet
 
 [graylog+kafka+zookeeper](https://blog.csdn.net/cucgyfjklx/article/details/122560859)
 
+### jenkins
 
+[jenkins 打 docker 镜像](https://blog.51cto.com/u_16099264/6393880)
+
+[Jenkins 保姆级教程](https://mp.weixin.qq.com/s/WYsLHAJxds35aREMn3CyZQ)
+
+[jenkins + maven + docker 一条龙](https://zhuanlan.zhihu.com/p/596609672?utm_id=0)
+
+[docker搭建的jenkins环境执行宿主的docker无权限问题](https://code84.com/770853.html)
 
 ### nginx
 [nginx request_id 全链路](https://segmentfault.com/a/1190000041451358)
@@ -362,3 +368,5 @@ https://blog.csdn.net/weixin_50812994/article/details/123517941
 [linux 安装 mysql](https://blog.csdn.net/study_c0/article/details/127413569)
 
 [docker 中 redis 配置](https://blog.csdn.net/xuyanqiang123/article/details/131536650)
+
+[idea 配置环境变量](https://blog.csdn.net/Saintmm/article/details/124603343)
