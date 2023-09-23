@@ -151,6 +151,8 @@ docker-ce
 
 [Docker搭建ElasticStack8.9](https://blog.csdn.net/asdasdsaff/article/details/132194686)
 
+[docker elk](https://zhuanlan.zhihu.com/p/97718826)
+
 ```bash
 # 配置 conf/cluster.conf 时，一定要填机器的网卡ip地址
 ifconfig | grep inet

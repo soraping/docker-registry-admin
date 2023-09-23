@@ -1,0 +1,230 @@
+version: '3.8'
+
+services:
+
+
+  nginx:
+    image: nginx:latest
+    # restart: always
+    privileged: true
+    container_name: nginx
+    ports:
+      - 8080:80
+      - 8443:443
+    volumes:
+      - /home/docker-data/nginx/html:/usr/share/nginx/html
+      - /home/docker-data/nginx/www:/var/www
+      - /home/docker-data/nginx/nginx.conf/:/etc/nginx/nginx.conf
+      - /home/docker-data/nginx/cert:/etc/nginx/cert
+      - /home/docker-data/nginx/conf.d:/etc/nginx/conf.d
+      - /home/docker-data/logs/nginx:/var/log/nginx
+    environment:
+      - NGINX_PORT=80
+      - TZ=Asia/Shanghai
+
+
+  mysql:
+    image: mysql:latest
+    # restart: always
+    networks:
+      - tools
+    privileged: true
+    container_name: mysql
+    ports:
+      - 3306:3306
+    volumes:
+      - /Users/caoping/www/mydata/mysql/data:/var/lib/mysql
+      - /Users/caoping/www/mydata/mysql/conf:/etc/mysql/conf.d
+      - /Users/caoping/www/mydata/mysql/my.cnf:/etc/mysql/my.cnf
+      - /Users/caoping/www/mydata/logs:/var/log/mysql
+    environment:
+      - TZ=Asia/Shanghai
+      - MYSQL_ROOT_PASSWORD=123456
+
+
+  redis:
+    image: redis:latest
+    # restart: always
+    networks:
+      - tools
+    privileged: true
+    container_name: redis
+    ports:
+      - 6379:6379
+    volumes:
+      - /home/docker-data/redis/data:/data
+      - /home/docker-data/redis/redis.conf:/etc/redis/redis.conf
+
+    command: redis-server /etc/redis/redis.conf
+
+
+  jenkins:
+    image: jenkins/jenkins:2.346.3-lts-jdk8
+    # restart: always
+    networks:
+      - tools
+    privileged: true
+    container_name: jenkins
+    ports:
+      - 8000:8080
+      - 50000:50000
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /home/docker-data/jenkins:/var/jenkins_home
+      # 传入maven包jdk包
+      - /home/maven/apache-maven-3.6.3:/usr/local/maven
+      - /opt/java/jdk1.8.0_381:/etc/local/java
+      - /usr/bin/git:/usr/local/git
+      # 在容器中使用宿主机的docker
+      - /usr/bin/docker:/usr/bin/docker
+      # 注意要在jenkins容器中开放权限
+      - /var/run/docker.sock:/var/run/docker.sock
+
+    environment:
+      - TZ=Asia/Shanghai
+
+
+  registry:
+    image: registry
+    # restart: always
+    networks:
+      - tools
+    privileged: true
+    container_name: registry
+    ports:
+      - 5000:5000
+    environment:
+      - REGISTRY_AUTH=htpasswd
+      #相对于数据卷auth的路径，不要写宿主机全路径
+      - REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd
+      - REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm
+      - REGISTRY_STORAGE_DELETE_ENABLED=true
+    volumes:
+      - /home/docker-data/registry/config.yml:/etc/docker/registry/config.yml
+      - /home/docker-data/registry/auth:/auth
+      - /home/docker-data/registry/data:/var/lib/registry
+
+
+  rabbitmq:
+    image: rabbitmq:management
+    # restart: always
+    networks:
+      - tools
+    privileged: true
+    container_name: rabbitmq
+    ports:
+      - 15672:15672
+      - 5672:5672
+      - 25672:25672
+    volumes:
+      - /home/docker-data/rabbitmq:/var/lib/rabbitmq
+      - /home/docker-data/logs/rabbitmq:/var/log/rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin123
+
+
+
+  kibana:
+    image: kibana:8.4.3
+    container_name: kibana
+    networks:
+      - es_net
+    # restart: always
+    ports:
+      - 5601:5601
+    volumes:
+      - /Users/caoping/data/kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
+    environment:
+      ELASTICSEARCH_HOSTS: http://es:9200
+      ELASTICSEARCH_URL: http://es:9200
+
+
+  es:
+    image: elasticsearch:8.4.3
+    container_name: es
+    networks:
+      - es_net
+    # restart: always
+    ports:
+      - 9200:9200
+      - 9300:9300
+    privileged: true
+    volumes:
+      - /Users/caoping/data/es/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - /Users/caoping/data/es/logs:/usr/share/elasticsearch/logs
+      - /Users/caoping/data/es/data:/usr/share/elasticsearch/data
+      - /Users/caoping/data/es/plugins:/usr/share/elasticsearch/plugins
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - discovery.type=single-node
+
+
+
+
+  nacos:
+    # restart: always
+    image: nacos/nacos-server
+    container_name: nacos
+    ports:
+      - 8848:8848
+      - 9848:9848
+      - 9849:9849
+
+    privileged: true
+    networks:
+      - tools
+    environment:
+      # 集群配置
+      # MODE: cluster
+      # NACOS_SERVERS: nacos-server01:8848 nacos-server02:8848 nacos-server03:8848
+
+      # 单机
+      MODE: standalone
+
+      # 副本
+      NACOS_REPLICAS: 1
+      PREFER_HOST_MODE: hostname
+
+      # 个人安全配置
+      NACOS_AUTH_ENABLE: "true"
+      NACOS_AUTH_TOKEN_EXPIRE_SECONDS: 18000
+      NACOS_AUTH_TOKEN: xzd123xzd456xzd789xzd123xzd456xzd789xzd123xzd456xzd789
+      NACOS_AUTH_IDENTITY_KEY: tianji
+      NACOS_AUTH_IDENTITY_VALUE: tianji
+
+      # 虚拟机设置
+      JVM_XMS: 128m
+      JVM_XMX: 128m
+      JVM_MS: 64m
+      JVM_MMS: 64m
+
+      # 存储
+      SPRING_DATASOURCE_PLATFORM: mysql
+      MYSQL_SERVICE_HOST: mysql
+      MYSQL_SERVICE_PORT: 3306
+      MYSQL_SERVICE_USER: root
+      MYSQL_SERVICE_PASSWORD: 123456
+      MYSQL_SERVICE_DB_NAME: nacos_config
+    volumes:
+      - /Users/caoping/www/mydata/nacos/logs:/home/nacos/logs
+      - /Users/caoping/www/mydata/nacos/init.d:/home/nacos/init.d
+      # - /Users/caoping/www/mydata/nacos/data:/home/nacos/data
+
+
+
+  mongo:
+    image: mongo:4.2
+    container_name: mongo
+    volumes:
+      - /home/mydata/mongo/data:/data/db
+    restart: always
+    ports:
+      - 27017:27017
+
+
+networks:
+  es_net:
+    driver: bridge
+  tools:
+    driver: bridge
