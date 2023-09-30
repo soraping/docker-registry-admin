@@ -81,9 +81,15 @@ docker-ce
 
 [docker容器不能访问外网解决](https://blog.csdn.net/weixin_43702146/article/details/126098133)
 
+### sql
+
+[SQL update join用法](https://blog.csdn.net/shenglishuguang/article/details/123556416)
+
 ### springboot
 
 [springboot 教程](https://blog.csdn.net/weixin_47872288/article/details/119514865)
+
+[spring对象反序列化](https://blog.csdn.net/Dive_fish/article/details/118759786)
 
 [springboot 启动后执行指令](https://blog.csdn.net/shaofengzong/article/details/127249926)
 
@@ -92,6 +98,12 @@ docker-ce
 [spring 分库分表](https://blog.csdn.net/crazymakercircle/article/details/123420859)
 
 [mybatis plus条件拼接等于、大于、不等于等等](https://blog.csdn.net/FurtherSkyQ/article/details/118155483)
+
+[mybatis plus 基本操作](https://blog.csdn.net/qq_49487356/article/details/125958323)
+
+[mybatis plus 动态表名](https://blog.csdn.net/hanxiaotongtong/article/details/126296382)
+
+[DO、DTO、BO、VO、POJO区别](https://zhuanlan.zhihu.com/p/350964880)
 
 [nacos 启动参数优化](https://refblogs.com/article/342)
 
@@ -203,6 +215,8 @@ ifconfig | grep inet
 
 [nacos+feign实现服务之间调用，详细教程](https://blog.csdn.net/weixin_41677422/article/details/114322271)
 
+[FeignClient注解中各种属性详解](https://blog.csdn.net/weixin_42972832/article/details/127716834)
+
 [SpringCloud+Nacos搭建使用](https://blog.csdn.net/ccczequn/article/details/123532588)
 
 [spring-boot-maven-plugin插件详解](https://zhuanlan.zhihu.com/p/634098705)
@@ -246,6 +260,8 @@ ifconfig | grep inet
 [关于Django ForeignKey 反向查询中filter和_set的效率对比详解](https://pythonjishu.com/rmsdbokcdvhwkya/)
 
 [uwsgi 安装](https://blog.csdn.net/JENREY/article/details/86652539)
+
+[python formart 补0](https://www.jb51.net/python/292950xg5.htm)
 
 conda python 高版本安装 uwsgi 肯定报错，所以使用源码编译安装
 
