@@ -165,6 +165,10 @@ docker-ce
 
 [docker elk](https://zhuanlan.zhihu.com/p/97718826)
 
+[任务调度框架 Quartz 用法指南「超详细」](https://mp.weixin.qq.com/s/WjRu1UW4hXxpHBeQAPt15w)
+
+[Java实现图片验证码功能](https://www.zhihu.com/tardis/bd/art/620969977?source_id=1001)
+
 ```bash
 # 配置 conf/cluster.conf 时，一定要填机器的网卡ip地址
 ifconfig | grep inet
@@ -376,6 +380,10 @@ https://blog.csdn.net/woshizhangliang999/article/details/105473237/
 https://blog.csdn.net/weixin_50812994/article/details/123517941
 
 [vue3 调试](https://www.cnblogs.com/samsara-yx/p/17030764.html)
+
+[vue3 defineProps、defineEmits、defineExpose](https://blog.csdn.net/qq_43291759/article/details/127884800)
+
+[Vue3 的 nextTick 函数](https://www.cnblogs.com/zhulongxu/p/16881389.html)
 
 [用Packer自动构建公有云系统镜像](https://zhuanlan.zhihu.com/p/571971950?utm_id=0)
 
