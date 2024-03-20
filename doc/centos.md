@@ -66,7 +66,7 @@ groupadd sftp
 # 创建一个用户，归属于 sftp 组
 useradd -d /home/sftp/sftpuser1 -m -g sftp -s /sbin/nologin sftpuser1
 # 设置密码
-passwd sftpuser1
+passwd 12345678
 # 设置该用户权限
 chown sftpuser1:sftp -R /home/sftp/sftpuser1
 chmod -R 755 /home/sftp/sftpuser1

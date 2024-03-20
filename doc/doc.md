@@ -143,27 +143,33 @@ docker-ce
 
 [ElasticSearch从入门到精通](https://blog.csdn.net/JENREY/article/details/81290535)
 
-[ElasticSearch最新版快速入门详解](https://blog.csdn.net/qq_26803795/article/details/106423578)
-
 [ElasticSearch中文分词](https://blog.csdn.net/qq_26803795/article/details/106522611)
 
 [elasticsearch IK分词器的安装、使用与扩展](https://blog.csdn.net/xujingyiss/article/details/123902714)
 
 [Docker安装ElasticSearch、Kibana、IK分词器以及设置ES账户密码](https://blog.csdn.net/qq_45645129/article/details/126887576)
 
+[es kibana 密码](https://blog.csdn.net/IT_road_qxc/article/details/121858843)
+
 [docker安装Elasticsearch7.6集群并设置密码](https://www.cnblogs.com/woshimrf/p/docker-es7.html)
 
 [Docker 安装 Elasticsearch 8.4.3 + Kibana 8.4.3 （账号密码模式）](https://blog.csdn.net/qq_34125999/article/details/127750458)
 
-[最清晰易懂的Elasticsearch操作手册](https://ropledata.blog.csdn.net/article/details/106834609)
+[elk 详细信息](https://blog.csdn.net/m0_47944994/article/details/127552211)
 
 [Logstash原理介绍及应用](https://blog.csdn.net/huxiang19851114/article/details/113397796)
+
+[Logstash深入理解](https://zhuanlan.zhihu.com/p/523608406?utm_id=0)
+
+[大道至简之ELKF日志分析搭建](https://blog.csdn.net/qq_45722923/article/details/129857810)
 
 [elk](https://blog.csdn.net/hansome_hong/article/details/124704141)
 
 [Docker搭建ElasticStack8.9](https://blog.csdn.net/asdasdsaff/article/details/132194686)
 
 [docker elk](https://zhuanlan.zhihu.com/p/97718826)
+
+[docker-compose搭建ELK, 解决Spring Boot分布式日志问题](https://blog.csdn.net/penganchunyan/article/details/115049939)
 
 [任务调度框架 Quartz 用法指南「超详细」](https://mp.weixin.qq.com/s/WjRu1UW4hXxpHBeQAPt15w)
 
